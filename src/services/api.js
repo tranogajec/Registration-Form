@@ -4,5 +4,5 @@ export const getFormInputs = async (url) => {
     const response = await fetch(url);
     const jsonResponseData = await response.json();
 
-    return jsonResponseData;
+    return jsonResponseData.fields;
 }

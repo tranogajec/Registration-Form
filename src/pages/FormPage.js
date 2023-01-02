@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BASE_URL, getFormInputs } from "../services/api";
 import { Oval } from "react-loader-spinner";
+import { RegistrationForm } from "../components/RegistrationForm";
 
 export const FormPage = () => {
 
@@ -11,7 +12,8 @@ export const FormPage = () => {
         setIsLoading(true)
         getFormInputs(BASE_URL)
             .then(res => {
-                setFormInputs(res.fields);
+                console.log(res)
+                setFormInputs(res);
                 setIsLoading(false)
             })
             .catch(error => console.log(error, 'err'))
@@ -21,7 +23,7 @@ export const FormPage = () => {
         <div>
             {isLoading
                 ? <Oval color='#8EC3B0' height={60} secondaryColor='#DEF5E5' width={60} />
-                : <div>{formInputs.map(input => <div key={input.name}>{input.name}</div>)}</div>
+                : <RegistrationForm formInputs={formInputs} />
             }
         </div>
     )
