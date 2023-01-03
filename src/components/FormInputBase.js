@@ -2,7 +2,7 @@ import React from "react";
 import { useController } from "react-hook-form";
 import { FormInput } from "./FormInput.js";
 
-export const FormInputBase = ({ control, fieldType, id, name, defaultValue }) => {
+export const FormInputBase = ({ control, fieldType, id, name, defaultValue, options }) => {
 
     const { field } = useController({ name, control, defaultValue })
 
@@ -15,6 +15,7 @@ export const FormInputBase = ({ control, fieldType, id, name, defaultValue }) =>
                 onChange={field.onChange}
                 value={field.value}
                 fieldType={fieldType}
+                options={options}
             />
         </>
     )

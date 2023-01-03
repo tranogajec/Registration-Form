@@ -9,7 +9,7 @@ export const RegistrationForm = ({ formInputs }) => {
     return (
         <div>
             {formInputs.map(input => {
-                const { code, fieldType, name, defaultValue } = input
+                const { code, fieldType, name, defaultValue, valueList } = input
                 return (
                     <FormInputBase
                         control={control}
@@ -18,6 +18,7 @@ export const RegistrationForm = ({ formInputs }) => {
                         id={code}
                         key={code}
                         name={name}
+                        options={valueList}
                     />
                 )
             })}

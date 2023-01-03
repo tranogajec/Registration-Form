@@ -1,4 +1,5 @@
 import React from "react";
+import { DropdownInput } from "./DropdownInput";
 import { TextInput } from "./TextInput";
 
 const FIELD_TYPE = {
@@ -10,7 +11,7 @@ const FIELD_TYPE = {
 
 const { date, dropdown, password, string } = FIELD_TYPE
 
-export const FormInput = ({ fieldType, name, value, onChange }) => {
+export const FormInput = ({ fieldType, name, value, onChange, options }) => {
 
     if (fieldType === date) {
         return (
@@ -19,7 +20,7 @@ export const FormInput = ({ fieldType, name, value, onChange }) => {
     }
     if (fieldType === dropdown) {
         return (
-            <select></select>
+            <DropdownInput onChange={onChange} value={value} options={options} />
         )
     }
     if (fieldType === password) {
