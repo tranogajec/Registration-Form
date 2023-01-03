@@ -10,7 +10,6 @@ export const DateInput = ({ id, onChange, value }) => {
                 onChange={onChange}
                 value={value}
                 renderInput={(props) => {
-                    console.log(props)
                     return <TextField {...props} />
                 }}
             />

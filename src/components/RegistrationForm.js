@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Button } from "./Button.js";
 import { FormInputBase } from "./FormInputBase.js";
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 
 export const RegistrationForm = ({ formInputs }) => {
 
@@ -26,7 +28,7 @@ export const RegistrationForm = ({ formInputs }) => {
                     />
                 )
             })}
-            <button onClick={handleSubmit(onSubmit)}>Submit</button>
+            <Button onClick={handleSubmit(onSubmit)} icon={<ReceiptLongIcon />} />
         </div>
     )
 }
