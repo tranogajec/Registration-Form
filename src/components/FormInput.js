@@ -1,21 +1,28 @@
 import React from "react";
-import { DropdownInput } from "./formInputComponents/DropdownInput";
-import { PasswordInput } from "./formInputComponents/PasswordInput";
-import { TextInput } from "./formInputComponents/TextInput";
+import PasswordField from "material-ui-password-field";
+import { TextField } from "@material-ui/core";
+import { DateInput } from "./DateInput";
+import { DropdownInput } from "./DropdownInput";
+
 
 const FIELD_TYPE = {
     date: 'date',
     dropdown: 'dropdown',
     password: 'password',
-    string: 'string'
 }
 
-const { date, dropdown, password, string } = FIELD_TYPE
+const { date, dropdown, password } = FIELD_TYPE
 
-export const FormInput = ({ fieldType, name, onChange, options, value, id }) => {
+export const FormInput = ({ fieldType, id, name, onChange, options, value }) => {
 
-    if (fieldType === date) return <input type='date' />
-    if (fieldType === dropdown) return <DropdownInput id={id} onChange={onChange} options={options} value={value} />
-    if (fieldType === password) return <PasswordInput id={id} onChange={onChange} value={value} />
-    if (fieldType === string) return <TextInput id={id} onChange={onChange} placeholder={name} type={fieldType} value={value} />
+    switch (fieldType) {
+        case date:
+            return <DateInput id={id} onChange={onChange} value={value} />
+        case dropdown:
+            return <DropdownInput id={id} onChange={onChange} options={options} value={value} />
+        case password:
+            return <PasswordField id={id} onChange={onChange} value={value} />
+        default:
+            return <TextField id={id} onChange={onChange} placeholder={name} value={value} />
+    }
 }

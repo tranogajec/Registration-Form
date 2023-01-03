@@ -4,7 +4,11 @@ import { FormInputBase } from "./FormInputBase.js";
 
 export const RegistrationForm = ({ formInputs }) => {
 
-    const { control, formState: { errors } } = useForm();
+    const { control, handleSubmit } = useForm();
+
+    const onSubmit = (data) => {
+        console.log(data, 'formData')
+    }
 
     return (
         <div>
@@ -22,6 +26,7 @@ export const RegistrationForm = ({ formInputs }) => {
                     />
                 )
             })}
+            <button onClick={handleSubmit(onSubmit)}>Submit</button>
         </div>
     )
 }

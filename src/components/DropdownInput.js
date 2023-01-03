@@ -1,7 +1,7 @@
 import React from "react";
-import { Select, MenuItem } from "@material-ui/core";
+import { MenuItem, Select } from "@material-ui/core";
 
-export const DropdownInput = ({ onChange, options, value, id }) => {
+export const DropdownInput = ({ id, onChange, options, value }) => {
 
     const generateSelectOptions = () => {
         return options.map((option) => {
