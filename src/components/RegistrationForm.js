@@ -1,23 +1,23 @@
 import React from "react";
-import { FormInput } from "./FormInput";
+import { useForm } from "react-hook-form";
+import { FormInputBase } from "./FormInputBase.js";
 
 export const RegistrationForm = ({ formInputs }) => {
+
+    const { control, formState: { errors } } = useForm();
+
     return (
         <div>
             {formInputs.map(input => {
-                const { code, defaultValue, fieldType, name, order, required, step, Updatable, validators, valueList } = input
+                const { code, fieldType, name, defaultValue } = input
                 return (
-                    <FormInput
+                    <FormInputBase
+                        control={control}
                         defaultValue={defaultValue}
                         fieldType={fieldType}
+                        id={code}
                         key={code}
                         name={name}
-                        order={order}
-                        required={required}
-                        step={step}
-                        updatable={Updatable}
-                        validators={valueList}
-                        valueList={validators}
                     />
                 )
             })}

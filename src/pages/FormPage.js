@@ -12,9 +12,8 @@ export const FormPage = () => {
         setIsLoading(true)
         getFormInputs(BASE_URL)
             .then(res => {
-                console.log(res)
                 setFormInputs(res);
-                setIsLoading(false)
+                setIsLoading(false);
             })
             .catch(error => console.log(error, 'err'))
     }, [setFormInputs])
