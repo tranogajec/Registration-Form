@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { BASE_URL, getFormInputs } from "../services/api";
 import { Oval } from "react-loader-spinner";
+import { BASE_URL, getFormInputs } from "../services/api";
 import { RegistrationForm } from "../components/RegistrationForm";
 
 export const FormPage = () => {

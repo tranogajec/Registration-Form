@@ -9,7 +9,7 @@ export const RegistrationForm = ({ formInputs }) => {
     return (
         <div>
             {formInputs.map(input => {
-                const { code, fieldType, name, defaultValue, valueList } = input
+                const { code, defaultValue, fieldType, name, valueList } = input
                 return (
                     <FormInputBase
                         control={control}
