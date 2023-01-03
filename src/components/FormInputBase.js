@@ -1,6 +1,6 @@
 import React from "react";
 import { useController } from "react-hook-form";
-import { FormInput } from "./FormInput.js";
+import { Input } from "./Input.js";
 
 export const FormInputBase = ({ control, defaultValue, fieldType, id, name, options }) => {
 
@@ -11,7 +11,7 @@ export const FormInputBase = ({ control, defaultValue, fieldType, id, name, opti
             <div>
                 {name}
             </div>
-            <FormInput
+            <Input
                 fieldType={fieldType}
                 id={id}
                 name={name}
