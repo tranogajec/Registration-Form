@@ -9,12 +9,14 @@ export const getFormInputs = async (url) => {
 }
 
 export const postFormInputs = async (url, data) => {
-    const payload = Object.keys(data).map(key => (
+    const userData = Object.keys(data).map(key => (
         {
             label: key,
             value: data[key]
         }
     ));
+    const payload = { data: { userData } }
+
     const response = await fetch(url, { method: "POST", body: JSON.stringify(payload) });
     const jsonResponseData = await response.json();
 

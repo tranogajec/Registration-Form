@@ -11,10 +11,18 @@ const resolveGetForm = (req, res, ctx) => {
 }
 
 const resolvePostForm = (req, res, ctx) => {
+    const userDataResponse = JSON.parse(req.body)
+    const userData = userDataResponse.data.userData
+
+    const userInfoResponse = {
+        status: 'success',
+        userData
+    }
+
     return res(
-        ctx.status(200),
+        ctx.status(201),
         ctx.delay(2000),
-        ctx.json(req.body)
+        ctx.json(userInfoResponse)
     )
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Oval } from "react-loader-spinner";
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { BASE_URL, postFormInputs } from "../services/api.js";
 import { Button } from "./Button.js";
 import { FormInputBase } from "./FormInputBase.js";
@@ -10,12 +10,15 @@ export const RegistrationForm = ({ formInputs }) => {
 
     const [isLoading, setIsLoading] = useState(false)
     const { control, handleSubmit } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
-        console.log(data, 'formData')
         setIsLoading(true)
         await postFormInputs(BASE_URL + '/overview', data)
-            .then(res => { console.log(res); setIsLoading(false) })
+            .then(res => {
+                setIsLoading(false);
+                navigate('/user-overview', { state: res })
+            })
     }
 
     return (
@@ -40,7 +43,7 @@ export const RegistrationForm = ({ formInputs }) => {
                             )
                         })
                     }
-                    <Button onClick={handleSubmit(onSubmit)} icon={<ReceiptLongIcon />} />
+                    <Button onClick={handleSubmit(onSubmit)} />
                 </div>
             }
         </>
