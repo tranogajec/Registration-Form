@@ -10,6 +10,15 @@ const resolveGetForm = (req, res, ctx) => {
     )
 }
 
+const resolvePostForm = (req, res, ctx) => {
+    return res(
+        ctx.status(200),
+        ctx.delay(2000),
+        ctx.json(req.body)
+    )
+}
+
 export const handlers = [
-    rest.get(BASE_URL, resolveGetForm)
+    rest.get(BASE_URL, resolveGetForm),
+    rest.post(BASE_URL + '/overview', resolvePostForm)
 ]

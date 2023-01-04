@@ -13,6 +13,8 @@ export const FormInputBase = ({ control, defaultValue, fieldType, id, name, opti
             </div>
             <Input
                 fieldType={fieldType}
+                defaultValue={field.defaultValue}
+                control={field.control}
                 id={id}
                 name={name}
                 onChange={field.onChange}

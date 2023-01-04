@@ -7,3 +7,16 @@ export const getFormInputs = async (url) => {
 
     return dataSortedByOrder;
 }
+
+export const postFormInputs = async (url, data) => {
+    const payload = Object.keys(data).map(key => (
+        {
+            label: key,
+            value: data[key]
+        }
+    ));
+    const response = await fetch(url, { method: "POST", body: JSON.stringify(payload) });
+    const jsonResponseData = await response.json();
+
+    return jsonResponseData;
+}
