@@ -2,24 +2,20 @@ import React from "react";
 import { useController } from "react-hook-form";
 import { Input } from "./Input.js";
 
-export const FormInputBase = ({ control, defaultValue, fieldType, id, name, options }) => {
+export const FormInputBase = ({ control, defaultValue, fieldType, id, name, options, placeholder }) => {
 
-    const { field } = useController({ control, defaultValue, name })
+    const { field: { onChange, value } } = useController({ control, defaultValue, name })
 
     return (
         <>
-            <div>
-                {name}
-            </div>
+            <h5>{name}</h5>
             <Input
                 fieldType={fieldType}
-                defaultValue={field.defaultValue}
-                control={field.control}
                 id={id}
-                name={name}
-                onChange={field.onChange}
+                onChange={onChange}
                 options={options}
-                value={field.value}
+                placeholder={placeholder}
+                value={value}
             />
         </>
     )

@@ -4,24 +4,24 @@ import { TextField } from "@material-ui/core";
 import { InputDate } from "./InputDate";
 import { InputDropdown } from "./InputDropdown";
 
-const FIELD_TYPE = {
-    date: 'date',
-    dropdown: 'dropdown',
-    password: 'password',
+const FieldType = {
+    DATE: 'date',
+    DROPDOWN: 'dropdown',
+    PASSWORD: 'password',
 }
 
-const { date, dropdown, password } = FIELD_TYPE
+const { DATE, DROPDOWN, PASSWORD } = FieldType
 
-export const Input = ({ fieldType, id, name, onChange, options, value }) => {
+export const Input = ({ fieldType, id, name, onChange, options, placeholder, value }) => {
 
     switch (fieldType) {
-        case date:
+        case DATE:
             return <InputDate id={id} onChange={onChange} value={value} />
-        case dropdown:
+        case DROPDOWN:
             return <InputDropdown id={id} onChange={onChange} options={options} value={value} />
-        case password:
+        case PASSWORD:
             return <PasswordField id={id} onChange={onChange} value={value} />
         default:
-            return <TextField id={id} onChange={onChange} placeholder={name} value={value} />
+            return <TextField id={id} onChange={onChange} placeholder={placeholder} value={value} />
     }
 }

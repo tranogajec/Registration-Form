@@ -17,8 +17,10 @@ export const RegistrationForm = ({ formInputs }) => {
         await postFormInputs(BASE_URL + '/overview', data)
             .then(res => {
                 setIsLoading(false);
-                navigate('/user-overview', { state: res })
+                navigate('/user-overview', { state: { data: res, status: 'success' } })
             })
+            .catch(error =>
+                navigate('/user-overview', { state: { data: error, status: 'error' } }))
     }
 
     return (
@@ -26,7 +28,7 @@ export const RegistrationForm = ({ formInputs }) => {
             {isLoading
                 ? <Oval color='#8EC3B0' height={60} secondaryColor='#DEF5E5' width={60} />
                 :
-                <div>
+                <form>
                     {
                         formInputs.map(input => {
                             const { code, defaultValue, fieldType, name, valueList } = input
@@ -39,12 +41,13 @@ export const RegistrationForm = ({ formInputs }) => {
                                     key={code}
                                     name={name}
                                     options={valueList}
+                                    placeholder={name}
                                 />
                             )
                         })
                     }
                     <Button onClick={handleSubmit(onSubmit)} />
-                </div>
+                </form>
             }
         </>
     )

@@ -3,8 +3,12 @@ export const BASE_URL = "/api/registration-form"
 export const getFormInputs = async (url) => {
     const response = await fetch(url);
     const jsonResponseData = await response.json();
-    const dataSortedByOrder = jsonResponseData.fields.sort((a, b) => a.order - b.order)
 
+    if (response.status !== 200) {
+        throw jsonResponseData.error
+    }
+
+    const dataSortedByOrder = jsonResponseData.fields.sort((a, b) => a.order - b.order)
     return dataSortedByOrder;
 }
 
@@ -19,6 +23,10 @@ export const postFormInputs = async (url, data) => {
 
     const response = await fetch(url, { method: "POST", body: JSON.stringify(payload) });
     const jsonResponseData = await response.json();
+
+    if (response.status !== 201) {
+        throw jsonResponseData.error
+    }
 
     return jsonResponseData;
 }

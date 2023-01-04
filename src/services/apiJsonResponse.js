@@ -338,3 +338,11 @@ export const initialFormResponse = {
         }
     ]
 }
+
+export const errorResponse = {
+    "error":
+    {
+        "title": "Internal Server Error",
+        "message": "Something went wrong. We're working on it!"
+    }
+}

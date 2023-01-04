@@ -1,8 +1,22 @@
 import { rest } from 'msw'
 import { BASE_URL } from '../api'
-import { initialFormResponse } from '../apiJsonResponse'
+import { errorResponse, initialFormResponse } from '../apiJsonResponse'
+
+const generateRandomNumber = (max) => {
+    return Math.floor(Math.random() * max)
+}
+
+const MAX_NUMBER = 2
 
 const resolveGetForm = (req, res, ctx) => {
+    if (generateRandomNumber(MAX_NUMBER) === 0) { // random number for status 500
+        return res(
+            ctx.status(500),
+            ctx.delay(1000),
+            ctx.json(errorResponse)
+        )
+    }
+
     return res(
         ctx.status(200),
         ctx.delay(500),
@@ -11,18 +25,21 @@ const resolveGetForm = (req, res, ctx) => {
 }
 
 const resolvePostForm = (req, res, ctx) => {
+    if (generateRandomNumber(MAX_NUMBER) === 0) { // random number for status 500
+        return res(
+            ctx.status(500),
+            ctx.delay(1000),
+            ctx.json(errorResponse)
+        )
+    }
+
     const userDataResponse = JSON.parse(req.body)
     const userData = userDataResponse.data.userData
-
-    const userInfoResponse = {
-        status: 'success',
-        userData
-    }
 
     return res(
         ctx.status(201),
         ctx.delay(2000),
-        ctx.json(userInfoResponse)
+        ctx.json(userData)
     )
 }
 
