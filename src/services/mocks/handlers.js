@@ -6,7 +6,7 @@ const generateRandomNumber = (max) => {
     return Math.floor(Math.random() * max)
 }
 
-const MAX_NUMBER = 10
+const MAX_NUMBER = 3
 
 const resolveGetForm = (req, res, ctx) => {
     if (generateRandomNumber(MAX_NUMBER) === 0) { // random number for status 500
@@ -19,7 +19,7 @@ const resolveGetForm = (req, res, ctx) => {
 
     return res(
         ctx.status(200),
-        ctx.delay(500),
+        ctx.delay(1000),
         ctx.json(initialFormResponse)
     )
 }

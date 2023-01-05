@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Oval } from "react-loader-spinner";
 import { BASE_URL, getFormInputs } from "../services/api";
+import { Error } from "../components/Error";
 import { RegistrationForm } from "../components/RegistrationForm";
+import styled from 'styled-components'
+import hangingMonkey from "../hanging-monkey.gif"
 
 export const FormPage = () => {
 
     const [formInputs, setFormInputs] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState()
+    const [error, setError] = useState([])
 
     useEffect(() => {
         setIsLoading(true)
@@ -17,19 +19,32 @@ export const FormPage = () => {
                 setIsLoading(false);
             })
             .catch(error => {
-                setError(prevState => ({ ...prevState, error }));
+                setError(prevState => [...prevState, error]);
                 setIsLoading(false);
             })
     }, [setIsLoading, setFormInputs, setError])
 
-    if (isLoading) return <Oval color='#8EC3B0' height={60} secondaryColor='#DEF5E5' width={60} />
-
     return (
-        <>
-            {error
-                ? <h2>Error</h2>
-                : <RegistrationForm formInputs={formInputs} />
+        <StyledMainContainer>
+            {isLoading
+                ? <img src={hangingMonkey} alt="spinning-monkey" />
+                : <>
+                    {error.length !== 0
+                        ? <Error error={error} />
+                        : <RegistrationForm formInputs={formInputs} />
+                    }
+                </>
             }
-        </>
+        </StyledMainContainer>
     )
 }
+
+const StyledMainContainer = styled.main`
+    align-items: center;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    max-width: 100vw;
+`
