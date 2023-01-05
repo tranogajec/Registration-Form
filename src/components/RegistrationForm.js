@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { BASE_URL, postFormInputs } from "../services/api.js";
 import { Button, submit } from "./Button.js";
 import { FormInputBase } from "./FormInputBase.js";
-import hangingMonkey from "../hanging-monkey.gif"
+import hangingMonkey from "../assets/hanging-monkey.gif"
 
 export const RegistrationForm = ({ formInputs }) => {
 
@@ -33,7 +33,14 @@ export const RegistrationForm = ({ formInputs }) => {
                     <StyledDivInputs>
                         {
                             formInputs.map(input => {
-                                const { code, defaultValue, fieldType, name, valueList } = input
+                                const {
+                                    code,
+                                    defaultValue,
+                                    fieldType,
+                                    name,
+                                    valueList,
+                                    validators,
+                                    required } = input
                                 return (
                                     <FormInputBase
                                         control={control}
@@ -44,6 +51,8 @@ export const RegistrationForm = ({ formInputs }) => {
                                         name={name}
                                         options={valueList}
                                         placeholder={name}
+                                        required={required}
+                                        validators={validators}
                                     />
                                 )
                             })
@@ -55,31 +64,6 @@ export const RegistrationForm = ({ formInputs }) => {
         </>
     )
 }
-
-// const StyledForm = styled.form`
-//     background-color: blue;
-//     border: none;
-//     max-height: 86vh;
-//     margin-bottom: 18px;
-//     margin-top: 18px;
-//     padding-left: 36px;
-//     padding-right: 36px;
-//     overflow-y: auto;
-//     text-align: left;
-
-//     &::-webkit-scrollbar {
-//         width: 6px;
-//   }
-
-//     &::-webkit-scrollbar-thumb {
-//         background: #cfd2cf;
-//         border-radius: 6px;
-//     &:hover {
-//         background: #cfd2cf;
-//         border-radius: 12px;
-//     }
-// }
-// `
 
 const StyledDivInputs = styled.div`
     margin-bottom: 18px;

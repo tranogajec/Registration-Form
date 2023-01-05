@@ -3,7 +3,7 @@ import { BASE_URL, getFormInputs } from "../services/api";
 import { Error } from "../components/Error";
 import { RegistrationForm } from "../components/RegistrationForm";
 import styled from 'styled-components'
-import hangingMonkey from "../hanging-monkey.gif"
+import hangingMonkey from "../assets/hanging-monkey.gif"
 
 export const FormPage = () => {
 
@@ -23,8 +23,6 @@ export const FormPage = () => {
                 setIsLoading(false);
             })
     }, [setIsLoading, setFormInputs, setError])
-
-
 
     return (
         <StyledMainContainer>
@@ -53,7 +51,7 @@ const StyledMainContainer = styled.main`
 `
 const StyledDivContent = styled.div`
     border: none;
-    max-height: 86vh;
+    max-height: 82vh;
     margin-bottom: 18px;
     margin-top: 18px;
     padding-left: 36px;
