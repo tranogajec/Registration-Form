@@ -9,7 +9,7 @@ export const FormPage = () => {
 
     const [formInputs, setFormInputs] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState([])
+    const [serverError, setError] = useState()
 
     useEffect(() => {
         setIsLoading(true)
@@ -19,21 +19,24 @@ export const FormPage = () => {
                 setIsLoading(false);
             })
             .catch(error => {
-                setError(prevState => [...prevState, error]);
+                setError(prevState => ({ ...prevState, error }))
                 setIsLoading(false);
             })
     }, [setIsLoading, setFormInputs, setError])
+
+
 
     return (
         <StyledMainContainer>
             {isLoading
                 ? <img src={hangingMonkey} alt="spinning-monkey" />
-                : <>
-                    {error.length !== 0
-                        ? <Error error={error} />
+                :
+                <StyledDivContent>
+                    {serverError
+                        ? <Error error={serverError.error} />
                         : <RegistrationForm formInputs={formInputs} />
                     }
-                </>
+                </StyledDivContent>
             }
         </StyledMainContainer>
     )
@@ -47,4 +50,27 @@ const StyledMainContainer = styled.main`
     justify-content: center;
     margin: 0;
     max-width: 100vw;
+`
+const StyledDivContent = styled.div`
+    border: none;
+    max-height: 86vh;
+    margin-bottom: 18px;
+    margin-top: 18px;
+    padding-left: 36px;
+    padding-right: 36px;
+    overflow-y: auto;
+    text-align: left;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+  }
+
+    &::-webkit-scrollbar-thumb {
+        background: #cfd2cf;
+        border-radius: 6px;
+    &:hover {
+        background: #cfd2cf;
+        border-radius: 12px;
+    }
+    }
 `

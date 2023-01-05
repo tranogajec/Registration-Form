@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styled from 'styled-components'
 import { BASE_URL, postFormInputs } from "../services/api.js";
-import { Button, BUTTON_LABEL } from "./Button.js";
+import { Button, submit } from "./Button.js";
 import { FormInputBase } from "./FormInputBase.js";
 import hangingMonkey from "../hanging-monkey.gif"
 
@@ -25,11 +25,11 @@ export const RegistrationForm = ({ formInputs }) => {
     }
 
     return (
-        <StyledMainContainer>
+        <>
             {isLoading
                 ? <img src={hangingMonkey} alt="spinning-monkey" />
                 :
-                <StyledForm>
+                <>
                     <StyledDivInputs>
                         {
                             formInputs.map(input => {
@@ -49,38 +49,37 @@ export const RegistrationForm = ({ formInputs }) => {
                             })
                         }
                     </StyledDivInputs>
-                    <Button label={BUTTON_LABEL.submit} onClick={handleSubmit(onSubmit)} />
-                </StyledForm>
+                    <Button label={submit} onClick={handleSubmit(onSubmit)} />
+                </>
             }
-        </StyledMainContainer>
+        </>
     )
 }
 
-const StyledMainContainer = styled.main`
-    padding-bottom: 18px;
-    padding-top: 18px;
-`
-const StyledForm = styled.form`
-    border: none;
-    max-height: 86vh;
-    padding-left: 36px;
-    padding-right: 36px;
-    overflow-y: auto;
-    text-align: left;
+// const StyledForm = styled.form`
+//     background-color: blue;
+//     border: none;
+//     max-height: 86vh;
+//     margin-bottom: 18px;
+//     margin-top: 18px;
+//     padding-left: 36px;
+//     padding-right: 36px;
+//     overflow-y: auto;
+//     text-align: left;
 
-    &::-webkit-scrollbar {
-        width: 6px;
-  }
+//     &::-webkit-scrollbar {
+//         width: 6px;
+//   }
 
-    &::-webkit-scrollbar-thumb {
-        background: #cfd2cf;
-        border-radius: 6px;
-    &:hover {
-        background: #cfd2cf;
-        border-radius: 12px;
-    }
-}
-`
+//     &::-webkit-scrollbar-thumb {
+//         background: #cfd2cf;
+//         border-radius: 6px;
+//     &:hover {
+//         background: #cfd2cf;
+//         border-radius: 12px;
+//     }
+// }
+// `
 
 const StyledDivInputs = styled.div`
     margin-bottom: 18px;

@@ -1,24 +1,26 @@
 import React from "react";
+import RefreshIcon from '@mui/icons-material/Refresh';
 import styled from 'styled-components'
 
-export const BUTTON_LABEL = {
+const BUTTON_LABEL = {
     tryAgain: "Try Again",
     submit: "Submit"
 }
 
-const { tryAgain, submit } = BUTTON_LABEL
+export const { tryAgain, submit } = BUTTON_LABEL
 
-const selectLabel = (label) => {
-    if (label === tryAgain) return tryAgain
-    if (label === submit) return submit
-}
-
-export const Button = ({ icon, label, onClick }) => {
-
+export const Button = ({ label, onClick }) => {
     return (
         <StyledButton onClick={onClick}>
-            <StyledDivText>{selectLabel(label)}</StyledDivText>
-            <>{icon}</>
+            {label === tryAgain
+                ?
+                <>
+                    <StyledDivText>{tryAgain}</StyledDivText>
+                    <RefreshIcon fontSize="inherit" />
+                </>
+                : <StyledDivText>{submit}</StyledDivText>
+            }
+
         </StyledButton>
     )
 }

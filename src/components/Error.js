@@ -1,29 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router'
 import { useLocation } from 'react-router-dom';
-import RefreshIcon from '@mui/icons-material/Refresh';
 import styled from 'styled-components'
-import { Button, BUTTON_LABEL } from './Button';
+import { Button, tryAgain } from './Button';
 
 export const Error = ({ error }) => {
+    const { title, message } = error;
 
     const navigate = useNavigate()
 
     return (
         <StyledDivContainer>
-            {error.map((err, index) => {
-                const { title, message } = err
-                return (
-                    <StyledError key={index}>
-                        <StyledDivErrorTitle>{title}</StyledDivErrorTitle>
-                        <StyledDivErrorMessage>{message}</StyledDivErrorMessage>
-                    </StyledError>
-                )
-            })}
-
+            <StyledError >
+                <StyledDivErrorTitle>{title}</StyledDivErrorTitle>
+                <StyledDivErrorMessage>{message}</StyledDivErrorMessage>
+            </StyledError>
             {useLocation().pathname === "/"
-                ? <Button onClick={() => navigate(0)} icon={<RefreshIcon fontSize="inherit" />} label={BUTTON_LABEL.tryAgain} />
-                : <Button onClick={() => navigate('/')} label={BUTTON_LABEL.tryAgain} />
+                ? <Button onClick={() => navigate(0)} label={tryAgain} />
+                : <Button onClick={() => navigate('/')} label={tryAgain} />
             }
         </StyledDivContainer>
     )
