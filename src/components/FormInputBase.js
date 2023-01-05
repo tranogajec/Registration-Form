@@ -4,7 +4,9 @@ import { Input } from "./Input.js";
 
 export const FormInputBase = ({ control, defaultValue, fieldType, id, name, options, placeholder }) => {
 
-    const { field: { onChange, value } } = useController({ control, defaultValue, name })
+    const { field: { onChange, value } }
+        = useController({ control, defaultValue, name })
+
 
     return (
         <>
