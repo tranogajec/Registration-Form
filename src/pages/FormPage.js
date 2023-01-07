@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
+import styled from 'styled-components'
 import { BASE_URL, getFormInputs } from "../services/api";
+import hangingMonkey from "../assets/hanging-monkey.gif"
 import { Error } from "../components/Error";
 import { RegistrationForm } from "../components/RegistrationForm";
-import styled from 'styled-components'
-import hangingMonkey from "../assets/hanging-monkey.gif"
 
 export const FormPage = () => {
-
     const [formInputs, setFormInputs] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setError] = useState()

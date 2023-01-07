@@ -39,7 +39,7 @@ const StyledMainContainer = styled.main`
 `
 const StyledDivOverview = styled.div`
     border: none;
-    max-height: 86vh;
+    max-height: 82vh;
     padding-left: 36px;
     padding-right: 36px;
     margin-bottom: 18px;

@@ -17,7 +17,7 @@ export const Header = () => {
 const StyledHeader = styled.header`
     display: flex;
     align-items: center;
-    padding-left: 36px;
+    padding-left: 30px;
 `
 const StyledDivImg = styled.div`
     margin-left: 12px;

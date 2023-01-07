@@ -6,7 +6,7 @@ export const DropdownInput = ({ id, onChange, options, value }) => {
     return (
         <Select id={id} onChange={onChange} value={value}>
             {options.map((option) =>
-                <MenuItem key={option.value} value={option.value}>{option.name}</MenuItem>
+                <MenuItem key={option.value} value={option.value}>{option.value}</MenuItem>
             )}
         </Select>
     )
