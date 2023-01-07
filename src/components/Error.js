@@ -2,7 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router'
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
-import { Button, tryAgain } from './Button';
+import { YELLOW } from '../constants';
+import { RegistrationFormButton } from './RegistrationFormButton';
 
 export const Error = ({ error }) => {
     const { title, message } = error;
@@ -16,8 +17,10 @@ export const Error = ({ error }) => {
                 <StyledDivErrorMessage>{message}</StyledDivErrorMessage>
             </StyledError>
             {useLocation().pathname === "/"
-                ? <Button onClick={() => navigate(0)} label={tryAgain} />
-                : <Button onClick={() => navigate('/')} label={tryAgain} />
+                ? <RegistrationFormButton
+                    icon='🙉' label='Try again' onClick={() => navigate(0)} style={YELLOW} />
+                : <RegistrationFormButton
+                    icon='🙈' label='Try again' onClick={() => navigate('/')} />
             }
         </StyledDivContainer>
     )

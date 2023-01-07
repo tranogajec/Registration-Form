@@ -7,16 +7,15 @@ export const Header = () => {
         <StyledHeader>
             <h3>Registration Form</h3>
             <StyledDivImg>
-                <img src={monkeyIcon} alt="spinning-monkey" />
+                <img src={monkeyIcon} alt="monkey-icon" />
             </StyledDivImg>
-
         </StyledHeader>
     )
 }
 
 const StyledHeader = styled.header`
-    display: flex;
     align-items: center;
+    display: flex;
     padding-left: 30px;
 `
 const StyledDivImg = styled.div`

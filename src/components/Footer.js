@@ -7,24 +7,25 @@ const redirectToEmailAddress = (email) => "mailto:" + email
 const EMAIL_ADDRESS = 'tenaranogajec.1@gmail.com'
 const CONTACT_ME = "Contact me"
 
-const currentYear = new Date().getFullYear()
+const generateCurrentYear = new Date().getFullYear()
 
 export const Footer = () => {
-
     return (
-        <StyledDivFooter>
+        <StyledFooter>
             <StyledDivContent>
-                <StyledDivLink href={redirectToEmailAddress(EMAIL_ADDRESS)}>{CONTACT_ME}</StyledDivLink>
-                <StyledCopyrightSymbol>
+                <StyledSpanLink href={redirectToEmailAddress(EMAIL_ADDRESS)}>
+                    {CONTACT_ME}
+                </StyledSpanLink>
+                <StyledSpanSymbol>
                     <CopyrightIcon fontSize="inherit" />
-                </StyledCopyrightSymbol>
-                <StyledDivDate>{currentYear}</StyledDivDate>
+                </StyledSpanSymbol>
+                <StyledSpanDate>{generateCurrentYear}</StyledSpanDate>
             </StyledDivContent>
-        </StyledDivFooter>
+        </StyledFooter>
     )
 }
 
-const StyledDivFooter = styled.div`
+const StyledFooter = styled.footer`
     align-items: center;
     background-color: white;
     bottom: 0;
@@ -46,7 +47,7 @@ const StyledDivContent = styled.div`
         width: 180px;
     }
 `
-const StyledDivLink = styled.a`
+const StyledSpanLink = styled.a`
     color: black;
     cursor:pointer; 
     font-size: 12px;
@@ -60,14 +61,14 @@ const StyledDivLink = styled.a`
         font-size: 18px;
     }
 `
-const StyledCopyrightSymbol = styled.div`
+const StyledSpanSymbol = styled.div`
     font-size: 12px;
     
     @media ${screenSize.md} {
         font-size: 18px;
     }
 `
-const StyledDivDate = styled.div`
+const StyledSpanDate = styled.div`
     font-size: 12px;
 
     @media ${screenSize.md} {

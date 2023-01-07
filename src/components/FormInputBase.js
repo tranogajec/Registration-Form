@@ -1,71 +1,10 @@
 import React from "react";
 import { useController } from "react-hook-form";
 import styled from 'styled-components'
-import { Input } from "./Input.js";
+import { generateRules } from "../helperFunctions.js";
+import { FormInput } from "./FormInput.js";
+import { ValidationWarning } from "./ValidationWarning.js";
 
-const ErrorMsg = {
-    SPECIAL_CHAR: "Input can contain letters from A-Z numbers from 0-9, @ and _ symbol. It can't contain special characters (. , + , * , ? , ^ , $ , ( , ) , [ , ] , { , } , | ) and empty space.",
-    NO_MATCH: "Passwords do not match."
-}
-
-const transformErrorMessage = (string) => {
-    const errorString =
-        (string.charAt(0).toUpperCase() + string.slice(1)).replaceAll('_', ' ') + '.';
-    return errorString
-}
-
-const generateRules = (validators, required) => {
-
-    const validationParams = validators.map(validator => {
-        const { name, parameters } = validator
-
-        switch (name) {
-            // case 'emailValidator':
-            //     return {}
-            case 'length':
-                return {
-                    maxLength: parameters.targetLength,
-                    minLength: parameters.targetLength
-                }
-            // case 'matchesField':
-            //     return {}
-            case 'maxLength':
-                return { maxLength: parameters.targetLength }
-            case 'minLength':
-                return { minLength: parameters.targetLength }
-            case 'min':
-                return { min: parameters.age }
-            case 'passwordStrength':
-                return { pattern: parameters.regex }
-            case 'regex':
-                return parameters.modifiers
-                    ? { pattern: parameters.regex + '/' + parameters.modifiers }
-                    : { pattern: parameters.regex }
-            default: return {}
-        }
-    })
-
-    const rules = {};
-    for (let i = 0; i < validationParams.length; i++) {
-        Object.assign(rules, validationParams[i]);
-    }
-
-    const rulesObject = { ...rules, required: required }
-    return rulesObject
-}
-
-const generateErrorMsg = (validation) => {
-
-    const { parameters } = validation
-
-    if (parameters.regex === "^[a-z0-9\\-\\_]+$"
-        && parameters.modifiers === 'i') {
-        return ErrorMsg.SPECIAL_CHAR
-    }
-    if (parameters.target === "password") {
-        return ErrorMsg.NO_MATCH
-    }
-}
 
 export const FormInputBase = ({ control, defaultValue, fieldType, id, name, options, placeholder, required, validators }) => {
 
@@ -79,8 +18,8 @@ export const FormInputBase = ({ control, defaultValue, fieldType, id, name, opti
 
     return (
         <StyledDivField>
-            <StyledH5Label>{name}</StyledH5Label>
-            <Input
+            <StyledH4Label>{name}</StyledH4Label>
+            <FormInput
                 fieldType={fieldType}
                 id={id}
                 onChange={onChange}
@@ -89,41 +28,20 @@ export const FormInputBase = ({ control, defaultValue, fieldType, id, name, opti
                 value={value}
             />
             {error
-                ? <>
-                    {validators.map((validator, index) =>
-                        <StyledPValidation key={index}>
-                            {validator.parameters.regex || validator.parameters.target
-                                ? generateErrorMsg(validator)
-                                : transformErrorMessage(validator.invalid_message)
-                            }
-                        </StyledPValidation>
-
-                    )}
-                </>
+                ? <>{validators.map((validator, index) => <ValidationWarning key={index} validator={validator} index={index} />)} </>
                 : null}
         </StyledDivField>
     )
 }
 
 const StyledDivField = styled.div`
-    border: 1px solid green;
-    border-radius: 12px;
-    margin-top: 12px;
+    border-radius: 6px;
+    margin-top: 6px;
+    margin-bottom: 18px;
+    padding-right: 12px;
+    padding-top: 12px;
+`
+const StyledH4Label = styled.h4`
     margin-bottom: 12px;
-    padding: 12px;
-`
-const StyledH5Label = styled.h5`
     margin-top: 0;
-`
-
-const StyledPValidation = styled.div`
-    color: #f44336;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.03333em;
-    line-height: 1.66;
-    margin-top: 3px;
-    margin: 0;
-    text-align: left;
 `

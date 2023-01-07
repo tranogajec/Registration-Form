@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styled from 'styled-components'
-import { BASE_URL, postFormInputs } from "../services/api.js";
 import hangingMonkey from "../assets/hanging-monkey.gif"
-import { Button, submit } from "./Button.js";
+import { BASE_URL, postFormInputs } from "../services/api.js";
+import { GREEN } from "../constants.js";
 import { FormInputBase } from "./FormInputBase.js";
+import { RegistrationFormButton } from "./RegistrationFormButton.js";
 
 export const RegistrationForm = ({ formInputs }) => {
 
@@ -26,37 +27,30 @@ export const RegistrationForm = ({ formInputs }) => {
                 navigate('/user-overview', { state: { data: error, status: 'error' } }))
     }
 
+    if (isLoading) return <img src={hangingMonkey} alt="spinning-monkey" />
+
     return (
-        <>
-            {isLoading
-                ? <img src={hangingMonkey} alt="spinning-monkey" />
-                :
-                <form>
-                    <StyledDivInputs>
-                        {
-                            formInputs.map(input => {
-                                return (
-                                    <FormInputBase
-                                        control={control}
-                                        defaultValue={input.defaultValue}
-                                        fieldType={input.fieldType}
-                                        id={input.code}
-                                        key={input.code}
-                                        name={input.name}
-                                        options={input.valueList}
-                                        placeholder={input.name}
-                                        required={input.required}
-                                        validators={input.validators}
-                                        formValidators={formValidators}
-                                    />
-                                )
-                            })
-                        }
-                    </StyledDivInputs>
-                    <Button label={submit} onClick={handleSubmit(onSubmit)} />
-                </form>
-            }
-        </>
+        <form>
+            <StyledDivInputs>
+                {formInputs.map(input =>
+                    <FormInputBase
+                        control={control}
+                        defaultValue={input.defaultValue}
+                        fieldType={input.fieldType}
+                        id={input.code}
+                        key={input.code}
+                        name={input.name}
+                        options={input.valueList}
+                        placeholder={input.name}
+                        required={input.required}
+                        validators={input.validators}
+                        formValidators={formValidators}
+                    />
+                )}
+            </StyledDivInputs>
+            <RegistrationFormButton
+                icon='🍌' label='Submit' onClick={handleSubmit(onSubmit)} style={GREEN} />
+        </form>
     )
 }
 

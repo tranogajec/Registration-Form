@@ -23,18 +23,20 @@ export const FormPage = () => {
             })
     }, [setIsLoading, setFormInputs, setError])
 
+    if (isLoading) return (
+        <StyledDivLoading>
+            <img src={hangingMonkey} alt="hanging-monkey" />
+        </StyledDivLoading>
+    )
+
     return (
         <StyledMainContainer>
-            {isLoading
-                ? <img src={hangingMonkey} alt="spinning-monkey" />
-                :
-                <StyledDivContent>
-                    {serverError
-                        ? <Error error={serverError.error} />
-                        : <RegistrationForm formInputs={formInputs} />
-                    }
-                </StyledDivContent>
-            }
+            <StyledDivContent>
+                {serverError
+                    ? <Error error={serverError.error} />
+                    : <RegistrationForm formInputs={formInputs} />
+                }
+            </StyledDivContent>
         </StyledMainContainer>
     )
 }
@@ -48,6 +50,12 @@ const StyledMainContainer = styled.main`
     margin: 0;
     max-width: 100vw;
 `
+const StyledDivLoading = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+`
 const StyledDivContent = styled.div`
     border: none;
     max-height: 82vh;
@@ -57,17 +65,16 @@ const StyledDivContent = styled.div`
     padding-right: 36px;
     overflow-y: auto;
     text-align: left;
-
+    
     &::-webkit-scrollbar {
         width: 6px;
-  }
-
+    }
     &::-webkit-scrollbar-thumb {
-        background: #cfd2cf;
-        border-radius: 6px;
+        background: #377D71;
+        border-radius: 12px;
     &:hover {
-        background: #cfd2cf;
+        background: #224B0C;
         border-radius: 12px;
     }
-    }
+}
 `
