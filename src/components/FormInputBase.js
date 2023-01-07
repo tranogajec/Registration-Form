@@ -3,22 +3,14 @@ import { useController } from "react-hook-form";
 import styled from 'styled-components'
 import { Input } from "./Input.js";
 
-// const validatorTypes = {
-//     minLength: 'minLength',
-//     maxLength: 'maxLength',
-//     regex: 'regex',
-//     emailValidator: 'emailValidator',
-//     olderThan: 'olderThan',
-//     passwordStrength: 'passwordStrength',
-//     matchesField: 'matchesField',
-//     length: 'length'
-// }
-
-const ERROR_MSG_SPECIAL_CHAR = "Input should contain letters from A-Z numbers from 0-9 and _ symbol. Should not contain special characters (. , + , * , ? , ^ , $ , ( , ) , [ , ] , { , } , | ) and empty space."
-const ERROR_MSG_NO_MATCH = "Passwords do not match"
+const ErrorMsg = {
+    SPECIAL_CHAR: "Input can contain letters from A-Z numbers from 0-9, @ and _ symbol. It can't contain special characters (. , + , * , ? , ^ , $ , ( , ) , [ , ] , { , } , | ) and empty space.",
+    NO_MATCH: "Passwords do not match."
+}
 
 const transformErrorMessage = (string) => {
-    const errorString = (string.charAt(0).toUpperCase() + string.slice(1)).replaceAll('_', ' ') + '.';
+    const errorString =
+        (string.charAt(0).toUpperCase() + string.slice(1)).replaceAll('_', ' ') + '.';
     return errorString
 }
 
@@ -35,8 +27,8 @@ const generateRules = (validators, required) => {
                     maxLength: parameters.targetLength,
                     minLength: parameters.targetLength
                 }
-            case 'matchesField':
-                return {}
+            // case 'matchesField':
+            //     return {}
             case 'maxLength':
                 return { maxLength: parameters.targetLength }
             case 'minLength':
@@ -59,18 +51,19 @@ const generateRules = (validators, required) => {
     }
 
     const rulesObject = { ...rules, required: required }
-    console.log(rulesObject)
     return rulesObject
 }
 
 const generateErrorMsg = (validation) => {
 
-    if (validation.parameters.regex === "^[a-z0-9\\-\\_]+$"
-        && validation.parameters.modifiers === 'i') {
-        return ERROR_MSG_SPECIAL_CHAR
+    const { parameters } = validation
+
+    if (parameters.regex === "^[a-z0-9\\-\\_]+$"
+        && parameters.modifiers === 'i') {
+        return ErrorMsg.SPECIAL_CHAR
     }
-    if (validation.parameters.target === "password") {
-        return ERROR_MSG_NO_MATCH
+    if (parameters.target === "password") {
+        return ErrorMsg.NO_MATCH
     }
 }
 
