@@ -1,6 +1,12 @@
-import { SPECIAL_CHAR, NO_MATCH } from "./constants";
+import {
+    MSG_LETTER_NUMBER_CHAR,
+    MSG_NO_MATCH,
+    MSG_CONTAIN_AT_LEAST,
+    REG_LETTER_NUM_CHAR,
+    REG_LETTER_NUM_CHAR_8
+} from "./constants";
 
-export const transformErrorMessage = (string) => {
+export const transformErrorMsg = (string) => {
     const errorString =
         (string.charAt(0).toUpperCase()
             + string.slice(1)).replaceAll('_', ' ') + '.';
@@ -10,13 +16,14 @@ export const transformErrorMessage = (string) => {
 export const generateErrorMsg = (validation) => {
     const { parameters } = validation
 
-    if (parameters.regex === "^[a-z0-9\\-\\_]+$"
-        && parameters.modifiers === 'i') {
-        return SPECIAL_CHAR
-    }
-    if (parameters.target === "password") {
-        return NO_MATCH
-    }
+    if (parameters.regex === REG_LETTER_NUM_CHAR && parameters.modifiers === 'i')
+        return MSG_LETTER_NUMBER_CHAR
+
+    if (parameters.regex === REG_LETTER_NUM_CHAR_8)
+        return MSG_CONTAIN_AT_LEAST
+
+    if (parameters.target === "password")
+        return MSG_NO_MATCH
 }
 
 export const generateRules = (validators, required) => {
@@ -27,25 +34,39 @@ export const generateRules = (validators, required) => {
         switch (name) {
             // case 'emailValidator':
             //     return {}
+
             case 'length':
                 return {
                     maxLength: parameters.targetLength,
                     minLength: parameters.targetLength
                 }
+
             // case 'matchesField':
             //     return {}
+
             case 'maxLength':
                 return { maxLength: parameters.targetLength }
+
             case 'minLength':
                 return { minLength: parameters.targetLength }
+
             case 'min':
                 return { min: parameters.age }
+
             case 'passwordStrength':
-                return { pattern: parameters.regex }
+                const passwordReg = new RegExp(parameters.regex)
+                return { pattern: passwordReg }
+
             case 'regex':
-                return parameters.modifiers
-                    ? { pattern: parameters.regex + '/' + parameters.modifiers }
-                    : { pattern: parameters.regex }
+                const reg = new RegExp(parameters.regex)
+                const generateRegex = (reg, modifier) =>
+                    new RegExp(reg.source, reg.flags + modifier)
+                return (
+                    parameters.modifiers
+                        ? { pattern: generateRegex(reg, parameters.modifiers) }
+                        : { pattern: reg }
+                )
+
             default: return {}
         }
     })

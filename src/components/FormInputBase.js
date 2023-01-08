@@ -5,7 +5,6 @@ import { generateRules } from "../helperFunctions.js";
 import { FormInput } from "./FormInput.js";
 import { ValidationWarning } from "./ValidationWarning.js";
 
-
 export const FormInputBase = ({ control, defaultValue, fieldType, id, name, options, placeholder, required, validators }) => {
 
     const { field: { onChange, value }, fieldState: { error } }
@@ -29,7 +28,8 @@ export const FormInputBase = ({ control, defaultValue, fieldType, id, name, opti
             />
             {error
                 ? <>{validators.map((validator, index) => <ValidationWarning key={index} validator={validator} index={index} />)} </>
-                : null}
+                : null
+            }
         </StyledDivField>
     )
 }

@@ -1,12 +1,12 @@
 import React from "react";
 import styled from 'styled-components'
-import { generateErrorMsg, transformErrorMessage } from "../helperFunctions";
+import { generateErrorMsg, transformErrorMsg } from "../helperFunctions";
 
 export const ValidationWarning = ({ validator }) =>
     <StyledPValidation>
         {validator.parameters.regex || validator.parameters.target
             ? generateErrorMsg(validator)
-            : transformErrorMessage(validator.invalid_message)
+            : transformErrorMsg(validator.invalid_message)
         }
     </StyledPValidation>
 
