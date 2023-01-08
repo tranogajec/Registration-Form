@@ -4,15 +4,23 @@ import {
     MSG_CONTAIN_AT_LEAST,
     REG_LETTER_NUM_CHAR,
     REG_LETTER_NUM_CHAR_8,
-    REG_EMAIL
-} from "./constants";
+    REG_EMAIL,
+    EMAIL_VAL,
+    LENGTH,
+    MATCHES_FIELD,
+    MAX_LENGTH,
+    MIN_LENGTH,
+    MIN,
+    PASS_STRENGTH,
+    REGEX
+} from "../constants";
 
 export const transformErrorMsg = (string) => {
     const errorString =
-        (string.charAt(0).toUpperCase()
-            + string.slice(1)).replaceAll('_', ' ') + '.';
+        (string.charAt(0).toUpperCase() + string.slice(1)).replaceAll('_', ' ') + '.';
     return errorString
 }
+
 
 export const generateErrorMsg = (validation) => {
     const { parameters, name } = validation
@@ -30,42 +38,54 @@ export const generateErrorMsg = (validation) => {
         return MSG_NO_MATCH
 }
 
-export const generateRules = (validators, required) => {
 
+const generateRegex = (reg, modifier) => new RegExp(reg.source, reg.flags + modifier)
+
+
+export const generateRules = (validators, required, getValues) => {
     const validationParams = validators.map(validator => {
         const { name, parameters } = validator
 
+        const targetValue = getValues(parameters.target)
+
         switch (name) {
-            case 'emailValidator':
-                return {
-                    pattern: REG_EMAIL
+            case EMAIL_VAL:
+                if (parameters.regex || parameters.regex && parameters.modifiers) {
+                    const reg = new RegExp(parameters.regex)
+                    return (
+                        parameters.modifiers
+                            ? { pattern: generateRegex(reg, parameters.modifiers) }
+                            : { pattern: reg }
+                    )
                 }
-            case 'length':
+                return { pattern: REG_EMAIL }
+
+            case LENGTH:
                 return {
                     maxLength: parameters.targetLength,
                     minLength: parameters.targetLength
                 }
 
-            // case 'matchesField':
-            //     return {}
+            case MATCHES_FIELD:
+                if (parameters.target) {
+                    return { validate: value => value === targetValue }
+                }
 
-            case 'maxLength':
+            case MAX_LENGTH:
                 return { maxLength: parameters.targetLength }
 
-            case 'minLength':
+            case MIN_LENGTH:
                 return { minLength: parameters.targetLength }
 
-            case 'min':
+            case MIN:
                 return { min: parameters.age }
 
-            case 'passwordStrength':
+            case PASS_STRENGTH:
                 const passwordReg = new RegExp(parameters.regex)
                 return { pattern: passwordReg }
 
-            case 'regex':
+            case REGEX:
                 const reg = new RegExp(parameters.regex)
-                const generateRegex = (reg, modifier) =>
-                    new RegExp(reg.source, reg.flags + modifier)
                 return (
                     parameters.modifiers
                         ? { pattern: generateRegex(reg, parameters.modifiers) }

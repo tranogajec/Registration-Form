@@ -29,3 +29,18 @@ const regexString = {
     REG_EMAIL: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 }
 export const { REG_LETTER_NUM_CHAR, REG_LETTER_NUM_CHAR_8, REG_EMAIL } = regexString
+
+
+
+const validatorTypes = {
+    MIN: 'min',
+    MIN_LENGTH: 'minLength',
+    MAX_LENGTH: 'maxLength',
+    REGEX: 'regex',
+    EMAIL_VAL: 'emailValidator',
+    OLDER_THAN: 'olderThan',
+    PASS_STRENGTH: 'passwordStrength',
+    MATCHES_FIELD: 'matchesField',
+    LENGTH: 'length'
+}
+export const { MIN, MIN_LENGTH, MAX_LENGTH, REGEX, EMAIL_VAL, OLDER_THAN, PASS_STRENGTH, MATCHES_FIELD, LENGTH } = validatorTypes
