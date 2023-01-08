@@ -3,7 +3,8 @@ import {
     MSG_NO_MATCH,
     MSG_CONTAIN_AT_LEAST,
     REG_LETTER_NUM_CHAR,
-    REG_LETTER_NUM_CHAR_8
+    REG_LETTER_NUM_CHAR_8,
+    REG_EMAIL
 } from "./constants";
 
 export const transformErrorMsg = (string) => {
@@ -14,12 +15,15 @@ export const transformErrorMsg = (string) => {
 }
 
 export const generateErrorMsg = (validation) => {
-    const { parameters } = validation
+    const { parameters, name } = validation
 
     if (parameters.regex === REG_LETTER_NUM_CHAR && parameters.modifiers === 'i')
         return MSG_LETTER_NUMBER_CHAR
 
     if (parameters.regex === REG_LETTER_NUM_CHAR_8)
+        return MSG_CONTAIN_AT_LEAST
+
+    if (name === 'emailValidator')
         return MSG_CONTAIN_AT_LEAST
 
     if (parameters.target === "password")
@@ -32,9 +36,10 @@ export const generateRules = (validators, required) => {
         const { name, parameters } = validator
 
         switch (name) {
-            // case 'emailValidator':
-            //     return {}
-
+            case 'emailValidator':
+                return {
+                    pattern: REG_EMAIL
+                }
             case 'length':
                 return {
                     maxLength: parameters.targetLength,

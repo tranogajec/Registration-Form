@@ -4,7 +4,7 @@ import { generateErrorMsg, transformErrorMsg } from "../helperFunctions";
 
 export const ValidationWarning = ({ validator }) =>
     <StyledPValidation>
-        {validator.parameters.regex || validator.parameters.target
+        {validator.parameters.regex || validator.parameters.target || Object.keys(validator.parameters).length === 0
             ? generateErrorMsg(validator)
             : transformErrorMsg(validator.invalid_message)
         }
