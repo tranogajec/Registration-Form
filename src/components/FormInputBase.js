@@ -1,9 +1,8 @@
 import React from "react";
 import { useController } from "react-hook-form";
 import styled from 'styled-components'
-import { generateRules } from '../services/helperFunctions.js'
+import { generateRules } from '../services/helpers.js'
 import { FormInput } from "./FormInput.js";
-import { ValidationWarning } from "./ValidationWarning.js";
 
 export const FormInputBase = ({ control, defaultValue, fieldType, getValues, id, name, options, placeholder, required, validators }) => {
 
@@ -27,15 +26,9 @@ export const FormInputBase = ({ control, defaultValue, fieldType, getValues, id,
                 placeholder={placeholder}
                 value={value}
             />
-            {error
-                ?
-                <StyledDivValidations>
-                    {validators.map((validator, index) =>
-                        <ValidationWarning key={index} validator={validator} index={index} />
-                    )}
-                </StyledDivValidations>
-                : null
-            }
+            {error?.message
+                ? <StyledParagraphValidation>{error.message}</StyledParagraphValidation>
+                : null}
         </StyledDivField>
     )
 }
@@ -61,7 +54,4 @@ const StyledParagraphValidation = styled.p`
     margin-top: 3px;
     padding-left: 1px;
     text-align: left;
-`
-const StyledDivValidations = styled.div`
-    margin-top: 3px;
 `

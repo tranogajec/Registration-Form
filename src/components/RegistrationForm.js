@@ -14,8 +14,6 @@ export const RegistrationForm = ({ formInputs }) => {
     const { control, handleSubmit, watch, getValues } = useForm();
     const navigate = useNavigate();
 
-    const formValidators = formInputs.map(input => input.validators)
-
     const onSubmit = async (data) => {
         setIsLoading(true)
         await postFormInputs(BASE_URL + '/overview', data)
@@ -40,7 +38,6 @@ export const RegistrationForm = ({ formInputs }) => {
                             control={control}
                             defaultValue={defaultValue}
                             fieldType={fieldType}
-                            formValidators={formValidators}
                             getValues={getValues}
                             id={code}
                             key={code}

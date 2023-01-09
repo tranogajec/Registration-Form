@@ -1,8 +1,8 @@
 const ButtonStyle = {
-    YELLOW: 'yellow',
     GREEN: 'green',
+    YELLOW: 'yellow',
 }
-export const { YELLOW, GREEN } = ButtonStyle
+export const { GREEN, YELLOW } = ButtonStyle
 
 
 const FieldType = {
@@ -14,33 +14,35 @@ export const { DATE, DROPDOWN, PASSWORD } = FieldType
 
 
 const ErrorMsg = {
-    MSG_LETTER_NUMBER_CHAR: "Input can contain only letters from A-Z (a-z), numbers from 0-9 and characters _ and -.",
+    MSG_BIRTHDAY: (value) => `You must be ${value} or older.`,
+    MSG_EMAIL: "Please enter a valid email address.",
+    MSG_INPUT_REQUIRED: 'Input required',
+    MSG_INVALID_INPUT: 'Invalid input',
+    MSG_LETTER_NUMBER_CHAR: "Input can only consists of lowercase letters (a-z), digits (0-9), hyphens (-), and underscores (_)",
+    MSG_MAX_LENGTH: (value) => `The input must not be more than ${value} characters long.`,
+    MSG_MIN_LENGTH: (value) => `The input must be at least ${value} characters long.`,
     MSG_NO_MATCH: "Passwords do not match.",
-    MSG_CONTAIN_AT_LEAST: "Password must contain at least one digit, one special character (!@#$%^&*), a lowercase letter, an uppercase letter, and a minimum of 8 characters.",
-    MSG_EMAIL: "Email must contain at least one . or - ..."
-    // TODO - add validation msg for email address
+    MSG_STRONG_PASS: "Password must be at least 8 characters long and contain at least one digit, one special character (!@#$%^&*), one uppercase letter, and one lowercase letter.",
 }
-export const { MSG_LETTER_NUMBER_CHAR, MSG_NO_MATCH, MSG_CONTAIN_AT_LEAST } = ErrorMsg
+export const { MSG_INVALID_INPUT, MSG_BIRTHDAY, MSG_MAX_LENGTH, MSG_MIN_LENGTH, MSG_INPUT_REQUIRED, MSG_EMAIL, MSG_LETTER_NUMBER_CHAR, MSG_NO_MATCH, MSG_STRONG_PASS } = ErrorMsg
 
 
 const regexString = {
+    REG_EMAIL: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
     REG_LETTER_NUM_CHAR: "^[a-z0-9\\-\\_]+$",
-    REG_LETTER_NUM_CHAR_8: "^(?=.*\\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$",
-    REG_EMAIL: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+    REG_STRONG_PASS: "^(?=.*\\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$"
 }
-export const { REG_LETTER_NUM_CHAR, REG_LETTER_NUM_CHAR_8, REG_EMAIL } = regexString
-
+export const { REG_EMAIL, REG_LETTER_NUM_CHAR, REG_STRONG_PASS } = regexString
 
 
 const validatorTypes = {
-    MIN: 'min',
-    MIN_LENGTH: 'minLength',
-    MAX_LENGTH: 'maxLength',
-    REGEX: 'regex',
     EMAIL_VAL: 'emailValidator',
+    LENGTH: 'length',
+    MATCHES_FIELD: 'matchesField',
+    MAX_LENGTH: 'maxLength',
+    MIN_LENGTH: 'minLength',
     OLDER_THAN: 'olderThan',
     PASS_STRENGTH: 'passwordStrength',
-    MATCHES_FIELD: 'matchesField',
-    LENGTH: 'length'
+    REGEX: 'regex',
 }
-export const { MIN, MIN_LENGTH, MAX_LENGTH, REGEX, EMAIL_VAL, OLDER_THAN, PASS_STRENGTH, MATCHES_FIELD, LENGTH } = validatorTypes
+export const { EMAIL_VAL, LENGTH, MATCHES_FIELD, MAX_LENGTH, MIN_LENGTH, OLDER_THAN, PASS_STRENGTH, REGEX } = validatorTypes
