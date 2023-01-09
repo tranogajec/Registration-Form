@@ -1,0 +1,19 @@
+{
+    "contactMe": "Contact me",
+    "inputRequired": "Input required.",
+    "next": "Next",
+    "registrationFormTitle": "Registration Form",
+    "submit": "Submit",
+    "successfullySubmitted": "Successfully submitted",
+    "tryAgain": "Try again",
+    "valMsgBirthdayA": "You must be ",
+    "valMsgBirthdayB": " or older",
+    "valMsgEmail": "Please enter a valid email address.",
+    "valMsgInvalidInput": "Invalid input.",
+    "valMsgMaxLengthA": "The input must not be more than ",
+    "valMsgMaxLengthB": " characters long.",
+    "valMsgMinLengthA": "The input must be at least ",
+    "valMsgMinLengthB": " characters long.",
+    "valMsgNoMatch": "Passwords do not match.",
+    "valMsgRegex": "Input can only consists of lowercase letters (a-z), digits (0-9), hyphens (-), and underscores (_)."
+}

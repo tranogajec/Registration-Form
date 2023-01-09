@@ -1,0 +1,19 @@
+{
+    "contactMe": "Kontakt meg",
+    "inputRequired": "Input kreves.",
+    "next": "Neste",
+    "registrationFormTitle": "Registreringsskjema",
+    "submit": "Send inn",
+    "successfullySubmitted": "Sendt inn",
+    "tryAgain": "Prøv igjen",
+    "valMsgBirthdayA": "Du må være ",
+    "valMsgBirthdayB": " eller eldre",
+    "valMsgEmail": "Vennligst skriv inn en gyldig e-postadresse.",
+    "valMsgInvalidInput": "Ugyldig inndata.",
+    "valMsgMaxLengthA": "Inndata må ikke være mer enn ",
+    "valMsgMaxLengthB": " tegn lange.",
+    "valMsgMinLengthA": "Inndata må være minst ",
+    "valMsgMinLengthB": " tegn lange.",
+    "valMsgNoMatch": "Passordene stemmer ikke.",
+    "valMsgRegex": "Inndata kan bare bestå av små bokstaver (a-z), sifre (0-9), bindestreker (-) og understreking (_)."
+}
