@@ -29,17 +29,17 @@ const StyledMainContainer = styled.main`
 `
 const StyledDivOverview = styled.div`
     border: none;
-    max-height: 82vh;
-    padding-right: 36px;
     margin-bottom: 18px;
     margin-top: 18px;
+    max-height: 82vh;
     overflow-y: auto;
+    padding-right: 36px;
     text-align: left;
 
     &::-webkit-scrollbar {
-        width: 6px;
         background: #F9F2ED;
         border-radius: 12px;
+        width: 6px;
     }
     &::-webkit-scrollbar-thumb {
         background: #377D71;

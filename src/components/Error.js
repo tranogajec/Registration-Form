@@ -6,15 +6,13 @@ import { YELLOW } from '../constants';
 import { RegistrationFormButton } from './RegistrationFormButton';
 
 export const Error = ({ error }) => {
-    const { title, message } = error;
-
     const navigate = useNavigate()
 
     return (
         <StyledDivContainer>
             <StyledError >
-                <StyledDivErrorTitle>{title}</StyledDivErrorTitle>
-                <StyledDivErrorMessage>{message}</StyledDivErrorMessage>
+                <StyledDivErrorTitle>{error.title}</StyledDivErrorTitle>
+                <StyledDivErrorMessage>{error.message}</StyledDivErrorMessage>
             </StyledError>
             {useLocation().pathname === "/"
                 ? <RegistrationFormButton

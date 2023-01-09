@@ -6,12 +6,9 @@ import { FormInput } from "./FormInput.js";
 
 export const FormInputBase = ({ control, defaultValue, fieldType, getValues, id, name, options, placeholder, required, validators }) => {
 
-    const { field: { onChange, value }, fieldState: { error } }
-        = useController({
-            control,
-            defaultValue,
-            name,
-            rules: generateRules(validators, required, getValues)
+    const { field: { onChange, value }, fieldState: { error } } =
+        useController({
+            control, defaultValue, name, rules: generateRules(validators, required, getValues)
         })
 
     return (

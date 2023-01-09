@@ -19,12 +19,6 @@ import {
     MSG_INVALID_INPUT,
 } from "../constants";
 
-export const transformErrorMsg = (string) => {
-    const errorString =
-        (string.charAt(0).toUpperCase() + string.slice(1)).replaceAll('_', ' ') + '.';
-    return errorString
-}
-
 const generateRegex = (reg, modifier) => new RegExp(reg.source, reg.flags + modifier)
 
 export const generateRules = (validators, required, getValues) => {
