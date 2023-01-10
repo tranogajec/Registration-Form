@@ -2,11 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router'
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
+import { useLocale } from '../context/LocaleContext';
 import { YELLOW } from '../constants';
 import { RegistrationFormButton } from './RegistrationFormButton';
 
 export const Error = ({ error }) => {
     const navigate = useNavigate()
+
+    const { stateLocale } = useLocale()
+    const { locales } = stateLocale
 
     return (
         <StyledDivContainer>
@@ -16,9 +20,9 @@ export const Error = ({ error }) => {
             </StyledError>
             {useLocation().pathname === "/"
                 ? <RegistrationFormButton
-                    icon='🙉' label='Try again' onClick={() => navigate(0)} style={YELLOW} />
+                    label={locales.tryAgain} onClick={() => navigate(0)} style={YELLOW} />
                 : <RegistrationFormButton
-                    icon='🙈' label='Try again' onClick={() => navigate('/')} />
+                    label={locales.tryAgain} onClick={() => navigate('/')} />
             }
         </StyledDivContainer>
     )

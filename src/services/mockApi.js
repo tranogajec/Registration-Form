@@ -1,23 +1,23 @@
 import { rest } from 'msw'
 import { BASE_URL } from './api'
-import { errorResponse, initialFormResponseEN } from './apiJsonResponse'
+import { errorResponse, initialFormResponse } from './apiJsonResponse'
 
 const generateRandomNumber = (max) => Math.floor(Math.random() * max)
-const MAX_NUMBER = 10
+const MAX_NUMBER = 3
 
 const resolveGetForm = (req, res, ctx) => {
     if (generateRandomNumber(MAX_NUMBER) === 0) { // random number for status 500
         return res(
             ctx.status(500),
             ctx.delay(2000),
-            ctx.json(errorResponse)
+            ctx.json(errorResponse.EN)
         )
     }
 
     return res(
         ctx.status(200),
         ctx.delay(2000),
-        ctx.json(initialFormResponseEN)
+        ctx.json(initialFormResponse.EN)
     )
 }
 
@@ -26,7 +26,7 @@ const resolvePostForm = (req, res, ctx) => {
         return res(
             ctx.status(500),
             ctx.delay(2000),
-            ctx.json(errorResponse)
+            ctx.json(errorResponse.EN)
         )
     }
 

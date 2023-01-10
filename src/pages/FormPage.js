@@ -67,6 +67,8 @@ const StyledDivContent = styled.div`
     text-align: left;
     
     &::-webkit-scrollbar {
+        background: #F9F2ED;
+        border-radius: 12px;
         width: 6px;
     }
     &::-webkit-scrollbar-thumb {

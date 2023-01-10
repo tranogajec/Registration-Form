@@ -1,14 +1,21 @@
 import React from "react";
 import { useController } from "react-hook-form";
 import styled from 'styled-components'
+import { useLocale } from "../context/LocaleContext.js";
 import { generateRules } from '../services/helpers.js'
 import { FormInput } from "./FormInput.js";
 
 export const FormInputBase = ({ control, defaultValue, fieldType, getValues, id, name, options, placeholder, required, validators }) => {
 
-    const { field: { onChange, value }, fieldState: { error } } =
+    const { stateLocale } = useLocale()
+    const { locales } = stateLocale;
+
+    const { field: { onChange, value, }, fieldState: { error } } =
         useController({
-            control, defaultValue, name, rules: generateRules(validators, required, getValues)
+            control,
+            defaultValue,
+            name,
+            rules: generateRules(validators, required, getValues, locales)
         })
 
     return (

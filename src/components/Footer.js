@@ -1,20 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import CopyrightIcon from '@mui/icons-material/Copyright';
+import { useLocale } from "../context/LocaleContext";
 import { screenSize } from "../styles";
 
 const redirectToEmailAddress = (email) => "mailto:" + email
 const EMAIL_ADDRESS = 'tenaranogajec.1@gmail.com'
-const CONTACT_ME = "Contact me"
 
 const generateCurrentYear = new Date().getFullYear()
 
-export const Footer = () => {
+export const Footer = ({ href, label, icon, year }) => {
+
+    const { stateLocale } = useLocale();
+    const { locales } = stateLocale
+
     return (
         <StyledFooter>
             <StyledDivContent>
                 <StyledSpanLink href={redirectToEmailAddress(EMAIL_ADDRESS)}>
-                    {CONTACT_ME}
+                    {locales.contactMe}
                 </StyledSpanLink>
                 <StyledSpanSymbol>
                     <CopyrightIcon fontSize="inherit" />

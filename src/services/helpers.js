@@ -4,24 +4,15 @@ import {
     MATCHES_FIELD,
     MAX_LENGTH,
     MIN_LENGTH,
-    MSG_EMAIL,
-    MSG_INPUT_REQUIRED,
-    MSG_LETTER_NUMBER_CHAR,
-    MSG_MAX_LENGTH,
-    MSG_MIN_LENGTH,
-    MSG_NO_MATCH,
-    MSG_STRONG_PASS,
     OLDER_THAN,
     PASS_STRENGTH,
     REG_EMAIL,
-    REGEX,
-    MSG_BIRTHDAY,
-    MSG_INVALID_INPUT,
+    REGEX
 } from "../constants";
 
 const generateRegex = (reg, modifier) => new RegExp(reg.source, reg.flags + modifier)
 
-export const generateRules = (validators, required, getValues) => {
+export const generateRules = (validators, required, getValues, locales) => {
     const validationParams = validators.map(validator => {
 
         const { key, parameters } = validator
@@ -32,56 +23,69 @@ export const generateRules = (validators, required, getValues) => {
                 if (parameters.regex || parameters.regex && parameters.modifiers) {
                     const reg = new RegExp(parameters.regex)
                     return {
-                        required: { value: required, message: MSG_INPUT_REQUIRED },
+                        required: { value: required, message: locales.inputRequired },
                         pattern: {
                             value: parameters.modifiers
                                 ? generateRegex(reg, parameters.modifiers)
                                 : reg,
-                            message: MSG_EMAIL
+                            message: locales.validationMail
                         }
                     }
                 }
                 return {
-                    required: { value: required, message: MSG_INPUT_REQUIRED },
-                    pattern: { value: REG_EMAIL, message: MSG_EMAIL }
+                    required: { value: required, message: locales.inputRequired },
+                    pattern: { value: REG_EMAIL, message: locales.validationEmail }
                 }
 
             case LENGTH:
                 return {
-                    required: { value: required, message: MSG_INPUT_REQUIRED },
-                    maxLength: { value: parameters.targetLength, message: MSG_MAX_LENGTH(parameters.targetLength) },
-                    minLength: { value: parameters.targetLength, message: MSG_MIN_LENGTH(parameters.targetLength) }
+                    required: { value: required, message: locales.inputRequired },
+                    maxLength: {
+                        value: parameters.targetLength,
+                        message: locales.validationMaxLengthA + parameters.targetLength + locales.validationMaxLengthB
+                    },
+                    minLength: {
+                        value: parameters.targetLength,
+                        message: locales.validationMinLengthA + parameters.targetLength + locales.validationMinLengthB
+                    }
                 }
 
             case MATCHES_FIELD:
                 if (parameters.target) {
                     return {
-                        required: { value: required, message: MSG_INPUT_REQUIRED },
-                        validate: value => value === targetValue || MSG_NO_MATCH
+                        required: { value: required, message: locales.inputRequired },
+                        validate: value => value === targetValue || locales.validationNoMatch
                     }
                 }
 
             case MAX_LENGTH:
                 return {
-                    required: { value: required, message: MSG_INPUT_REQUIRED },
-                    maxLength: { value: parameters.targetLength, message: MSG_MAX_LENGTH(parameters.targetLength) }
+                    required: { value: required, message: locales.inputRequired },
+                    maxLength: {
+                        value: parameters.targetLength,
+                        message: locales.validationMaxLengthA + parameters.targetLength + locales.validationMaxLengthB
+                    }
                 }
 
             case MIN_LENGTH:
                 return {
-                    required: { value: required, message: MSG_INPUT_REQUIRED },
-                    minLength: { value: parameters.targetLength, message: MSG_MIN_LENGTH(parameters.targetLength) }
+                    required: { value: required, message: locales.inputRequired },
+                    minLength: {
+                        value: parameters.targetLength,
+                        message: locales.validationMinLengthA + parameters.targetLength + locales.validationMinLengthB
+                    }
                 }
 
             case OLDER_THAN:
                 return {
-                    required: { value: required, message: MSG_INPUT_REQUIRED },
-                    validate: (value) => {
+                    required: { value: required, message: locales.inputRequired },
+                    validate: value => {
                         const currentDate = new Date().toJSON().slice(0, 10) + ' 01:00:00';
 
                         const age = ~~((Date.now(currentDate) - value.$d) / 31557600000);
 
-                        if (age < parameters.age) return MSG_BIRTHDAY(parameters.age);
+                        if (age < parameters.age)
+                            return locales.validationBirthdayA + parameters.age + locales.validationBirthdayB;
                         return true
                     }
 
@@ -90,8 +94,8 @@ export const generateRules = (validators, required, getValues) => {
             case PASS_STRENGTH:
                 const passwordReg = new RegExp(parameters.regex)
                 return {
-                    required: { value: required, message: MSG_INPUT_REQUIRED },
-                    pattern: { value: passwordReg, message: MSG_STRONG_PASS }
+                    required: { value: required, message: locales.inputRequired },
+                    pattern: { value: passwordReg, message: locales.validationStrongPass }
                 }
 
             case REGEX:
@@ -99,12 +103,12 @@ export const generateRules = (validators, required, getValues) => {
                 return (
                     parameters.modifiers
                         ? {
-                            required: { value: required, message: MSG_INPUT_REQUIRED },
-                            pattern: { value: generateRegex(reg, parameters.modifiers), message: MSG_LETTER_NUMBER_CHAR }
+                            required: { value: required, message: locales.inputRequired },
+                            pattern: { value: generateRegex(reg, parameters.modifiers), message: locales.validationLettersAndNum }
                         }
                         : {
-                            required: { value: required, message: MSG_INPUT_REQUIRED },
-                            pattern: { value: reg, message: MSG_INVALID_INPUT }
+                            required: { value: required, message: locales.inputRequired },
+                            pattern: { value: reg, message: locales.invalidInput }
                         }
                 )
 

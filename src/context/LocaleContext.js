@@ -1,7 +1,7 @@
-import React, { useContext, createContext, useReducer } from 'react';
-import { LOCALE_STRINGS, LANGUAGES } from '../constants';
+import React, { createContext, useContext, useReducer } from 'react';
+import { localeValues, languages } from '../constants';
 
-const initialState = { strings: LOCALE_STRINGS[LANGUAGES.EN] }
+const initialState = { locales: localeValues[languages.EN] }
 const LocaleContext = createContext()
 
 const reducer = (state, action) => {
@@ -9,7 +9,7 @@ const reducer = (state, action) => {
         case "CHANGE_LOCALE": {
             return {
                 ...state,
-                strings: LOCALE_STRINGS[action.payload.region]
+                locales: localeValues[action.payload.language]
             };
         }
         default:

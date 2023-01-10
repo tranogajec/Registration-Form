@@ -2,17 +2,24 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import styled from 'styled-components'
+import { useLocale } from "../context/LocaleContext";
 import hangingMonkey from "../assets/hanging-monkey.gif"
 import { BASE_URL, postFormInputs } from "../services/api.js";
-import { GREEN } from "../constants.js";
+import { GREEN, TERMS_AND_COND } from "../constants.js";
+import { CheckboxInput } from "./CheckboxInput";
 import { FormInputBase } from "./FormInputBase.js";
 import { RegistrationFormButton } from "./RegistrationFormButton.js";
 
 export const RegistrationForm = ({ formInputs }) => {
 
+    const { stateLocale } = useLocale();
+    const { locales } = stateLocale;
+
     const [isLoading, setIsLoading] = useState(false)
-    const { control, handleSubmit, watch, getValues } = useForm();
+    const { control, handleSubmit, watch, getValues } = useForm()
     const navigate = useNavigate();
+
+    const [isChecked, setIsChecked] = useState(false)
 
     const onSubmit = async (data) => {
         setIsLoading(true)
@@ -23,6 +30,10 @@ export const RegistrationForm = ({ formInputs }) => {
             })
             .catch(error =>
                 navigate('/user-overview', { state: { data: error, status: 'error' } }))
+    }
+
+    const toggleIsChecked = () => {
+        setIsChecked(current => !current)
     }
 
     if (isLoading) return <img src={hangingMonkey} alt="spinning-monkey" />
@@ -51,8 +62,19 @@ export const RegistrationForm = ({ formInputs }) => {
                     )
                 })}
             </StyledDivInputs>
+            <CheckboxInput
+                color="success"
+                label={locales.readAndAgree}
+                onChange={toggleIsChecked}
+                size="small" url={TERMS_AND_COND}
+                urlText={locales.termsAndConditions}
+            />
             <RegistrationFormButton
-                icon='🍌' label='Submit' onClick={handleSubmit(onSubmit)} style={GREEN} />
+                disabled={!isChecked}
+                label={locales.submit}
+                onClick={handleSubmit(onSubmit)}
+                style={GREEN}
+            />
         </form>
     )
 }

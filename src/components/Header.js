@@ -2,15 +2,15 @@ import React from "react";
 import styled from 'styled-components'
 import monkeyIcon from "../assets/monkey-icon.png"
 import { useLocale } from "../context/LocaleContext";
-import { LANGUAGES } from "../constants"
+import { BEIGE, languages } from "../constants"
+import { RegistrationFormButton } from "./RegistrationFormButton";
 
 export const Header = () => {
 
     const { stateLocale, dispatch } = useLocale();
-    const { strings } = stateLocale;
-    console.log(stateLocale, 'state')
+    const { locales } = stateLocale;
 
-    const handleRegionChange = (language) => {
+    const handleLanguageChange = (language) => {
         const action = {
             type: "CHANGE_LOCALE",
             payload: {
@@ -24,15 +24,20 @@ export const Header = () => {
     return (
         <StyledHeader>
             <StyledDivTitle>
-                <h3>{strings.registrationFormTitle}</h3>
+                <h3>{locales.registrationFormTitle}</h3>
                 <StyledDivImg>
                     <img src={monkeyIcon} alt="monkey-icon" />
                 </StyledDivImg>
             </StyledDivTitle>
             <StyledDivButtons>
-                {Object.keys(LANGUAGES).map((language, index) =>
-                    <button key={index} onClick={() => handleRegionChange(language)}>{language}</button>)
-                }
+                {Object.keys(languages).map((language, index) =>
+                    <RegistrationFormButton
+                        key={index}
+                        onClick={() => handleLanguageChange(language)}
+                        label={language}
+                        style={BEIGE}
+                    />
+                )}
             </StyledDivButtons>
         </StyledHeader>
     )

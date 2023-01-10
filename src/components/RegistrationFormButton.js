@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components'
-import { GREEN, YELLOW } from "../constants";
+import { BEIGE, GREEN, YELLOW } from "../constants";
 
 const selectStyle = (style) => {
     if (style === YELLOW) {
@@ -15,30 +15,38 @@ const selectStyle = (style) => {
             bgColor: "#377D71",
         }
     }
+    if (style === BEIGE) {
+        return {
+            hoverBgColor: "#DFBB9D",
+            bgColor: "#F9F2ED",
+        }
+    }
     return {
         hoverBgColor: "#EC7272",
         bgColor: "#A62349",
     }
 };
 
-export const RegistrationFormButton = ({ icon, label, onClick, style }) =>
-    <StyledButton onClick={onClick} style={selectStyle(style)}>
-        <StyledSpanLabel>{label}</StyledSpanLabel>
-        <>{icon}</>
+export const RegistrationFormButton = ({ disabled, label, onClick, style }) =>
+    <StyledButton onClick={onClick} style={selectStyle(style)} disabled={disabled}>
+        <>{label}</>
     </StyledButton>
 
 const StyledButton = styled.button`
     align-items: center;
-    justify-content: center;
     background-color: ${({ style }) => style.bgColor};
     border-radius: 24px;
     border: none;
     color: #100720;
     cursor: pointer;
     display: flex;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 600;
     justify-content: center;
-    padding: 12px 18px;
+    justify-content: center;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding: 8px 12px;
     text-decoration: none;
     transition: all 150ms ease;
 
@@ -47,11 +55,7 @@ const StyledButton = styled.button`
         transition: background-color 0.1s ease-in-out 0.1s;
     }
     &:disabled {
-      background-color: #CFD2CF;
-      cursor: auto;
+        background-color: #CFD2CF;
+        cursor: auto;
     }
-`
-const StyledSpanLabel = styled.span`
-    margin-right: 6px;
-    padding-top: 2px;
 `
