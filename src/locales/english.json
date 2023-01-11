@@ -1,4 +1,5 @@
 {
+    "back": "Back",
     "contactMe": "Contact me",
     "dear": "Dear",
     "enjoy": "Enjoy!",
@@ -7,9 +8,8 @@
     "readAndAgree": "I have read and agree to the",
     "registrationFormTitle": "Registration Form",
     "submit": "Submit",
-    "successfullySubmitted": "Successfully submitted",
+    "successfullySubmitted": "You have successfully submitted the form.",
     "termsAndConditions": "Terms and Conditions",
-    "thankYouForCreatingAnAcc": "Thank you for creating an account.",
     "tryAgain": "Try again",
     "validationBirthdayA": "You must be ",
     "validationBirthdayB": " or older",

@@ -1,14 +1,15 @@
 import React from "react";
 import styled from 'styled-components'
-import { screenSize } from "../styles";
 import monkeyIcon from "../assets/monkey-icon.png"
 import { useLocale } from "../context/LocaleContext";
-import { BEIGE, languages } from "../constants"
+import { screenSize } from "../styles";
+import { BEIGE, languages, YELLOW } from "../constants"
 import { RegistrationFormButton } from "./RegistrationFormButton";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
     const { localeState, localeDispatch } = useLocale();
-    const { locales } = localeState;
+    const { locales, currentLang } = localeState;
 
     const handleLanguageChange = (language) => {
         const action = {
@@ -26,7 +27,9 @@ export const Header = () => {
             <StyledDivTitle>
                 <StyledH3Title>{locales.registrationFormTitle}</StyledH3Title>
                 <StyledDivImg>
-                    <img src={monkeyIcon} alt="monkey-icon" />
+                    <Link to='/'>
+                        <img src={monkeyIcon} alt="monkey-icon" />
+                    </Link>
                 </StyledDivImg>
             </StyledDivTitle>
             <StyledDivButtons>
@@ -35,7 +38,7 @@ export const Header = () => {
                         key={index}
                         onClick={() => handleLanguageChange(lang)}
                         label={lang}
-                        style={BEIGE}
+                        style={(lang === currentLang) ? YELLOW : BEIGE}
                     />
                 )}
             </StyledDivButtons>

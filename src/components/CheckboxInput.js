@@ -2,16 +2,16 @@ import React from "react";
 import Checkbox from '@mui/material/Checkbox';
 import styled from 'styled-components'
 
-export const CheckboxInput = ({ color, label, onChange, size, url, urlText }) =>
-    <StyledDivTermsAndCond>
-        <Checkbox size={size} color={color} onChange={onChange} />
+export const CheckboxInput = ({ checked, color, label, onChange, size, url, urlText }) =>
+    <StyledDivCheckbox>
+        <Checkbox size={size} color={color} onChange={onChange} checked={checked} />
         <StyledDivText>
             <StyledSpanText>{label}</StyledSpanText>
             <a href={url}>{urlText}</a>
         </StyledDivText>
-    </StyledDivTermsAndCond>
+    </StyledDivCheckbox>
 
-const StyledDivTermsAndCond = styled.div`
+const StyledDivCheckbox = styled.div`
     align-items: center;
     display: flex;
     font-size: 14px;
@@ -22,6 +22,5 @@ const StyledDivText = styled.span`
     margin-top: 3px;
 `
 const StyledSpanText = styled.span`
-    margin-left: 6px;
     margin-right: 6px;
 `

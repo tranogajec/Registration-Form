@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import dancingBanana from "../assets/dancing-banana.gif"
 import { useLocale } from '../context/LocaleContext'
 
-export const UserOverview = ({ overviewData }) => {
+export const Overview = ({ overviewData }) => {
 
     const { localeState } = useLocale()
     const { locales } = localeState
@@ -19,7 +19,7 @@ export const UserOverview = ({ overviewData }) => {
                     <StyledComma>,</StyledComma>
                 </StyledDivUser>
                 <StyledDivMessage>
-                    <span>{locales.thankYouForCreatingAnAcc}</span>
+                    <span>{locales.successfullySubmitted}</span>
                     <StyledSpanEnjoy>{locales.enjoy}</StyledSpanEnjoy>
                 </StyledDivMessage>
                 <StyledImg src={dancingBanana} alt="dancing-banana" />
@@ -83,7 +83,7 @@ const StyledSpanEnjoy = styled.span`
     margin-top: 12px; 
 `
 const StyledImg = styled.img`
-    margin-top: 30px;
+    margin-top: 60px;
     max-height: 400px;
     max-width: 400px;
 `

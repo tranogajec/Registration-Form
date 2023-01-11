@@ -10,7 +10,7 @@ export const FormInputBase = ({ control, defaultValue, fieldType, getValues, id,
     const { localeState } = useLocale()
     const { locales } = localeState;
 
-    const { field: { onChange, value, }, fieldState: { error } } =
+    const { field: { onChange, value }, fieldState: { error } } =
         useController({
             control,
             defaultValue,
@@ -20,7 +20,7 @@ export const FormInputBase = ({ control, defaultValue, fieldType, getValues, id,
 
     return (
         <StyledDivField>
-            <StyledH4Label>{placeholder}</StyledH4Label>
+            <StyledH4Label>{required ? placeholder + '*' : placeholder}</StyledH4Label>
             <FormInput
                 fieldType={fieldType}
                 id={id}
@@ -56,6 +56,7 @@ const StyledParagraphValidation = styled.p`
     line-height: 1.66;
     margin-bottom: 0;
     margin-top: 3px;
+    max-width: 300px;
     padding-left: 1px;
     text-align: left;
 `

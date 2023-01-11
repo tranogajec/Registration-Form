@@ -1,4 +1,5 @@
 {
+    "back": "Tilbake",
     "contactMe": "Kontakt meg",
     "dear": "Kjære", 
     "enjoy": "Nyt!",
@@ -7,9 +8,8 @@
     "readAndAgree": "Jeg har lest og godtar",
     "registrationFormTitle": "Registreringsskjema",
     "submit": "Send inn",
-    "successfullySubmitted": "Sendt inn",
+    "successfullySubmitted": "Du har sendt inn skjemaet.",
     "termsAndConditions": "Vilkår og betingelser",
-    "thankYouForCreatingAnAcc": "Takk for at du opprettet en konto.", 
     "tryAgain": "Prøv igjen",
     "validationBirthdayA": "Du må være ",
     "validationBirthdayB": " eller eldre",

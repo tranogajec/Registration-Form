@@ -2,20 +2,19 @@ import React from "react";
 import { useLocation } from 'react-router-dom'
 import { useLocale } from "../context/LocaleContext";
 import { Error } from "../components/Error";
-import { UserOverview } from "../components/UserOverview";
+import { Overview } from "../components/Overview";
 
+export const OverviewPage = () => {
 
-export const UserOverviewPage = () => {
-
-    const userOverview = useLocation()
-    const overviewData = userOverview.state.data
+    const overview = useLocation()
+    const overviewData = overview.state.data
 
     const { localeState } = useLocale();
     const { currentLang } = localeState;
 
-    if (userOverview.state.status === 'error') {
+    if (overview.state.status === 'error') {
         return <Error error={overviewData[currentLang].error} />
     }
 
-    return <UserOverview overviewData={overviewData} />
+    return <Overview overviewData={overviewData} />
 }
