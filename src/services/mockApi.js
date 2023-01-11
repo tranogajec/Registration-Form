@@ -22,6 +22,13 @@ const resolveGetForm = (req, res, ctx) => {
 }
 
 const resolvePostForm = (req, res, ctx) => {
+    if (generateRandomNumber(MAX_NUMBER) === 0) { // random number for status 500
+        return res(
+            ctx.status(500),
+            ctx.delay(2000),
+            ctx.json(errorResponse)
+        )
+    }
 
     const userDataResponse = JSON.parse(req.body)
     const userData = userDataResponse.data.userData

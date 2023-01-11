@@ -38,7 +38,7 @@ export const RegistrationForm = ({ formInputs }) => {
         setIsChecked(current => !current)
     }
 
-    if (isLoading) return <img src={hangingMonkey} alt="spinning-monkey" />
+    if (isLoading) return <StyledDivLoading><img src={hangingMonkey} alt="spinning-monkey" /></StyledDivLoading>
 
     return (
         <form>
@@ -80,6 +80,12 @@ export const RegistrationForm = ({ formInputs }) => {
     )
 }
 
+const StyledDivLoading = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+  `;
 const StyledDivInputs = styled.div`
     margin-bottom: 18px;
 `

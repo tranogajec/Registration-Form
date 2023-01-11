@@ -45,9 +45,9 @@ export const Header = () => {
 const StyledHeader = styled.header`
     align-items: center;
     display: flex;
+    justify-content: space-between;
     padding-left: 30px;
     padding-right: 30px;
-    justify-content: space-between;
 `
 const StyledDivTitle = styled.div`
     align-items: center;

@@ -15,7 +15,6 @@ export const getFormInputs = async (url, language) => {
 }
 
 export const postFormInputs = async (url, data) => {
-
     const userData = Object.keys(data).map(key => (
         {
             label: key,
@@ -26,6 +25,10 @@ export const postFormInputs = async (url, data) => {
 
     const response = await fetch(url, { method: "POST", body: JSON.stringify(payload) });
     const jsonResponseData = await response.json();
+
+    if (response.status !== 201) {
+        throw jsonResponseData
+    }
 
     return jsonResponseData;
 }

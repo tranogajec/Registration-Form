@@ -20,15 +20,17 @@ export const generateRules = (validators, required, getValues, locales) => {
 
         switch (key) {
             case EMAIL_VAL:
-                if (parameters.regex || parameters.regex && parameters.modifiers) {
-                    const reg = new RegExp(parameters.regex)
-                    return {
-                        required: { value: required, message: locales.inputRequired },
-                        pattern: {
-                            value: parameters.modifiers
-                                ? generateRegex(reg, parameters.modifiers)
-                                : reg,
-                            message: locales.validationMail
+                if (parameters.regex) {
+                    if (parameters.regex && parameters.modifiers) {
+                        const reg = new RegExp(parameters.regex)
+                        return {
+                            required: { value: required, message: locales.inputRequired },
+                            pattern: {
+                                value: parameters.modifiers
+                                    ? generateRegex(reg, parameters.modifiers)
+                                    : reg,
+                                message: locales.validationMail
+                            }
                         }
                     }
                 }
@@ -57,6 +59,7 @@ export const generateRules = (validators, required, getValues, locales) => {
                         validate: value => value === targetValue || locales.validationNoMatch
                     }
                 }
+                return {}
 
             case MAX_LENGTH:
                 return {

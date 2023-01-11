@@ -42,7 +42,7 @@ export const FormPage = () => {
         else {
             setIsLoading(false)
         }
-    }, [setIsLoading, currentLang]);
+    }, [setIsLoading, currentLang, registrationFormDispatch, registrationFormState.forms]);
 
     if (isLoading)
         return (
