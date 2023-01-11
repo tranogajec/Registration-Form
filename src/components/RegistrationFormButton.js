@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { BEIGE, GREEN, YELLOW } from "../constants";
 
 const selectStyle = (style) => {
-    if (style === YELLOW) {
+    if (style === BEIGE) {
         return {
-            hoverBgColor: "#FFE9B1",
-            bgColor: "#F8B400",
+            hoverBgColor: "#DFBB9D",
+            bgColor: "#F9F2ED",
         }
     }
     if (style === GREEN) {
@@ -15,10 +15,10 @@ const selectStyle = (style) => {
             bgColor: "#377D71",
         }
     }
-    if (style === BEIGE) {
+    if (style === YELLOW) {
         return {
-            hoverBgColor: "#DFBB9D",
-            bgColor: "#F9F2ED",
+            hoverBgColor: "#FFE9B1",
+            bgColor: "#F8B400",
         }
     }
     return {

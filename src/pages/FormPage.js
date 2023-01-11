@@ -51,9 +51,7 @@ export const FormPage = () => {
             </StyledDivLoading>
         );
 
-    if (!registrationFormState.forms[currentLang] && !serverError) {
-        return null;
-    }
+    if (!registrationFormState.forms[currentLang] && !serverError) return null
 
     return (
         <StyledMainContainer>
@@ -77,19 +75,19 @@ const StyledMainContainer = styled.main`
     max-width: 100vw;
   `;
 const StyledDivLoading = styled.div`
-    display: flex;
     align-items: center;
-    justify-content: center;
+    display: flex;
     height: 80vh;
+    justify-content: center;
   `;
 const StyledDivContent = styled.div`
     border: none;
-    max-height: 82vh;
     margin-bottom: 18px;
     margin-top: 18px;
+    max-height: 82vh;
+    overflow-y: auto;
     padding-left: 36px;
     padding-right: 36px;
-    overflow-y: auto;
     text-align: left;
   
     &::-webkit-scrollbar {

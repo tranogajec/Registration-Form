@@ -30,24 +30,17 @@ export const UserOverview = ({ overviewData }) => {
 
 const StyledMainContainer = styled.main`
     align-items: center;
-    border-radius: 18px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     margin: 0;
-    max-width: 100vw;
 `
 const StyledDivOverview = styled.div`
-    border: none;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 18px;
     margin-top: 60px;
-    max-height: 82vh;
     overflow-y: auto;
-    padding-right: 36px;
-    text-align: left;
+    text-align: center;
 
     &::-webkit-scrollbar {
         background: #F9F2ED;
@@ -64,8 +57,9 @@ const StyledDivOverview = styled.div`
 }
 `
 const StyledDivUser = styled.div`
-    display: flex;
     align-items: center;
+    display: flex;
+    justify-content: center;
 `
 const StyledSpanGreeting = styled.span`
     font-size: 20px;
@@ -75,9 +69,9 @@ const StyledComma = styled.span`
     font-size: 20px;
 `
 const StyledSpanUsername = styled.span`
-    font-weight: 600;
+    font-size: 28px;
     font-style: italic;
-    font-size: 28px
+    font-weight: 600;
 `
 const StyledDivMessage = styled.div`
     display: flex;

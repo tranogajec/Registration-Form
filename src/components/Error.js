@@ -14,10 +14,10 @@ export const Error = ({ error }) => {
 
     return (
         <StyledDivContainer>
-            <StyledError>
-                <StyledDivErrorTitle>{error.title}</StyledDivErrorTitle>
+            <StyledDivError>
+                <StyledH3ErrorTitle>{error.title}</StyledH3ErrorTitle>
                 <StyledDivErrorMessage>{error.message}</StyledDivErrorMessage>
-            </StyledError>
+            </StyledDivError>
             {useLocation().pathname === "/"
                 ? <RegistrationFormButton
                     label={locales.tryAgain} onClick={() => navigate(0)} style={YELLOW} />
@@ -38,11 +38,13 @@ const StyledDivContainer = styled.div`
     margin-top: 120px;
     text-align: center;
 `
-const StyledError = styled.div`
+const StyledDivError = styled.div`
     margin-bottom: 18px;
 `
-const StyledDivErrorTitle = styled.div`
+const StyledH3ErrorTitle = styled.h3`
     font-size: 30px;
+    margin-bottom: 12px;
+    margin-top:12px;
 `
 const StyledDivErrorMessage = styled.div`
     font-style: italic;
