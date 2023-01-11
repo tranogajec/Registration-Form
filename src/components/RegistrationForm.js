@@ -12,14 +12,15 @@ import { RegistrationFormButton } from "./RegistrationFormButton.js";
 
 export const RegistrationForm = ({ formInputs }) => {
 
-    const { stateLocale } = useLocale();
-    const { locales } = stateLocale;
+    const { localeState } = useLocale();
+    const { locales } = localeState;
 
     const [isLoading, setIsLoading] = useState(false)
-    const { control, handleSubmit, watch, getValues } = useForm()
-    const navigate = useNavigate();
+    const { control, handleSubmit, getValues } = useForm()
 
+    const navigate = useNavigate()
     const [isChecked, setIsChecked] = useState(false)
+
 
     const onSubmit = async (data) => {
         setIsLoading(true)
@@ -29,7 +30,8 @@ export const RegistrationForm = ({ formInputs }) => {
                 navigate('/user-overview', { state: { data: res, status: 'success' } })
             })
             .catch(error =>
-                navigate('/user-overview', { state: { data: error, status: 'error' } }))
+                navigate('/user-overview', { state: { data: error, status: 'error' } })
+            )
     }
 
     const toggleIsChecked = () => {
@@ -57,7 +59,6 @@ export const RegistrationForm = ({ formInputs }) => {
                             placeholder={name}
                             required={required}
                             validators={validators}
-                            watch={watch}
                         />
                     )
                 })}

@@ -1,22 +1,32 @@
 import React from "react";
 import styled from 'styled-components'
-import monkeySilhouette from '../assets/monkey-silhouette.png'
+import dancingBanana from "../assets/dancing-banana.gif"
+import { useLocale } from '../context/LocaleContext'
 
-export const UserOverview = ({ overviewData }) =>
-    <StyledMainContainer>
-        <StyledDivOverview>
-            {overviewData.map((data, index) =>
-                <StyledDivContainer key={index}>
-                    <StyledImg src={monkeySilhouette} alt="monkey-icon" />
-                    <StyledDivData>
-                        <StyledH5Label>{data.label}</StyledH5Label>
-                        <StyledSpanValue>{data.value}</StyledSpanValue>
-                    </StyledDivData>
-                </StyledDivContainer>
-            )}
-        </StyledDivOverview>
-    </StyledMainContainer>
+export const UserOverview = ({ overviewData }) => {
 
+    const { localeState } = useLocale()
+    const { locales } = localeState
+
+    const username = overviewData.find(el => el.label === "username")
+
+    return (
+        <StyledMainContainer>
+            <StyledDivOverview>
+                <StyledDivUser>
+                    <StyledSpanGreeting>{locales.dear}</StyledSpanGreeting>
+                    <StyledSpanUsername>{username.value}</StyledSpanUsername>
+                    <StyledComma>,</StyledComma>
+                </StyledDivUser>
+                <StyledDivMessage>
+                    <span>{locales.thankYouForCreatingAnAcc}</span>
+                    <StyledSpanEnjoy>{locales.enjoy}</StyledSpanEnjoy>
+                </StyledDivMessage>
+                <StyledImg src={dancingBanana} alt="dancing-banana" />
+            </StyledDivOverview>
+        </StyledMainContainer>
+    )
+}
 
 const StyledMainContainer = styled.main`
     align-items: center;
@@ -29,8 +39,11 @@ const StyledMainContainer = styled.main`
 `
 const StyledDivOverview = styled.div`
     border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-bottom: 18px;
-    margin-top: 18px;
+    margin-top: 60px;
     max-height: 82vh;
     overflow-y: auto;
     padding-right: 36px;
@@ -50,25 +63,33 @@ const StyledDivOverview = styled.div`
     }
 }
 `
-const StyledDivContainer = styled.div`
+const StyledDivUser = styled.div`
     display: flex;
-    margin-top: 30px;
+    align-items: center;
 `
-const StyledDivData = styled.div`
+const StyledSpanGreeting = styled.span`
+    font-size: 20px;
+    margin-right: 6px; 
+`
+const StyledComma = styled.span`
+    font-size: 20px;
+`
+const StyledSpanUsername = styled.span`
+    font-weight: 600;
+    font-style: italic;
+    font-size: 28px
+`
+const StyledDivMessage = styled.div`
     display: flex;
     flex-direction: column;
+    font-size: 20px;
+    margin-top: 12px;
+`
+const StyledSpanEnjoy = styled.span`
+    margin-top: 12px; 
 `
 const StyledImg = styled.img`
-    height: 24px;
-    margin-right: 12px;
-    width: 24px;
-`
-const StyledH5Label = styled.h5`
-    font-size: 20px;
-    margin-bottom: 12px;
-    margin-top: 0;
-`
-const StyledSpanValue = styled.span`
-    font-size: 18px;
-    font-style: italic;
+    margin-top: 30px;
+    max-height: 400px;
+    max-width: 400px;
 `

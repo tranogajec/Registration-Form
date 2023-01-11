@@ -1,5 +1,7 @@
 {
     "contactMe": "Kontakt meg",
+    "dear": "Kjære", 
+    "enjoy": "Nyt!",
     "inputRequired": "Input kreves.",
     "next": "Neste",
     "readAndAgree": "Jeg har lest og godtar",
@@ -7,6 +9,7 @@
     "submit": "Send inn",
     "successfullySubmitted": "Sendt inn",
     "termsAndConditions": "Vilkår og betingelser",
+    "thankYouForCreatingAnAcc": "Takk for at du opprettet en konto.", 
     "tryAgain": "Prøv igjen",
     "validationBirthdayA": "Du må være ",
     "validationBirthdayB": " eller eldre",

@@ -28,7 +28,7 @@ const selectStyle = (style) => {
 };
 
 export const RegistrationFormButton = ({ disabled, label, onClick, style }) =>
-    <StyledButton onClick={onClick} style={selectStyle(style)} disabled={disabled}>
+    <StyledButton disabled={disabled} onClick={onClick} style={selectStyle(style)}>
         <>{label}</>
     </StyledButton>
 

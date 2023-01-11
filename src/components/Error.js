@@ -3,18 +3,18 @@ import { useNavigate } from 'react-router'
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components'
 import { useLocale } from '../context/LocaleContext';
-import { YELLOW } from '../constants';
+import { BEIGE, YELLOW } from '../constants';
 import { RegistrationFormButton } from './RegistrationFormButton';
 
 export const Error = ({ error }) => {
     const navigate = useNavigate()
 
-    const { stateLocale } = useLocale()
-    const { locales } = stateLocale
+    const { localeState } = useLocale()
+    const { locales } = localeState
 
     return (
         <StyledDivContainer>
-            <StyledError >
+            <StyledError>
                 <StyledDivErrorTitle>{error.title}</StyledDivErrorTitle>
                 <StyledDivErrorMessage>{error.message}</StyledDivErrorMessage>
             </StyledError>
@@ -22,7 +22,7 @@ export const Error = ({ error }) => {
                 ? <RegistrationFormButton
                     label={locales.tryAgain} onClick={() => navigate(0)} style={YELLOW} />
                 : <RegistrationFormButton
-                    label={locales.tryAgain} onClick={() => navigate('/')} />
+                    label={locales.tryAgain} onClick={() => navigate('/')} style={BEIGE} />
             }
         </StyledDivContainer>
     )

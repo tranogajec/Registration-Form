@@ -7,8 +7,8 @@ import { FormInput } from "./FormInput.js";
 
 export const FormInputBase = ({ control, defaultValue, fieldType, getValues, id, name, options, placeholder, required, validators }) => {
 
-    const { stateLocale } = useLocale()
-    const { locales } = stateLocale;
+    const { localeState } = useLocale()
+    const { locales } = localeState;
 
     const { field: { onChange, value, }, fieldState: { error } } =
         useController({

@@ -9,10 +9,10 @@ const EMAIL_ADDRESS = 'tenaranogajec.1@gmail.com'
 
 const generateCurrentYear = new Date().getFullYear()
 
-export const Footer = ({ href, label, icon, year }) => {
+export const Footer = () => {
 
-    const { stateLocale } = useLocale();
-    const { locales } = stateLocale
+    const { localeState } = useLocale();
+    const { locales } = localeState
 
     return (
         <StyledFooter>

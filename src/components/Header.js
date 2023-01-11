@@ -6,9 +6,8 @@ import { BEIGE, languages } from "../constants"
 import { RegistrationFormButton } from "./RegistrationFormButton";
 
 export const Header = () => {
-
-    const { stateLocale, dispatch } = useLocale();
-    const { locales } = stateLocale;
+    const { localeState, localeDispatch } = useLocale();
+    const { locales } = localeState;
 
     const handleLanguageChange = (language) => {
         const action = {
@@ -18,7 +17,7 @@ export const Header = () => {
             }
         };
 
-        dispatch(action);
+        localeDispatch(action);
     };
 
     return (
@@ -30,11 +29,11 @@ export const Header = () => {
                 </StyledDivImg>
             </StyledDivTitle>
             <StyledDivButtons>
-                {Object.keys(languages).map((language, index) =>
+                {Object.keys(languages).map((lang, index) =>
                     <RegistrationFormButton
                         key={index}
-                        onClick={() => handleLanguageChange(language)}
-                        label={language}
+                        onClick={() => handleLanguageChange(lang)}
+                        label={lang}
                         style={BEIGE}
                     />
                 )}

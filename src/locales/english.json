@@ -1,5 +1,7 @@
 {
     "contactMe": "Contact me",
+    "dear": "Dear",
+    "enjoy": "Enjoy!",
     "inputRequired": "Input required.",
     "next": "Next",
     "readAndAgree": "I have read and agree to the",
@@ -7,6 +9,7 @@
     "submit": "Submit",
     "successfullySubmitted": "Successfully submitted",
     "termsAndConditions": "Terms and Conditions",
+    "thankYouForCreatingAnAcc": "Thank you for creating an accout.",
     "tryAgain": "Try again",
     "validationBirthdayA": "You must be ",
     "validationBirthdayB": " or older",

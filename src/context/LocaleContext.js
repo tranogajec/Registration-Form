@@ -1,14 +1,18 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { localeValues, languages } from '../constants';
 
-const initialState = { locales: localeValues[languages.EN] }
+const initialState = {
+    currentLang: languages.EN,
+    locales: localeValues[languages.EN]
+}
 const LocaleContext = createContext()
 
-const reducer = (state, action) => {
+const localeContextReducer = (state, action) => {
     switch (action.type) {
         case "CHANGE_LOCALE": {
             return {
                 ...state,
+                currentLang: action.payload.language,
                 locales: localeValues[action.payload.language]
             };
         }
@@ -18,10 +22,10 @@ const reducer = (state, action) => {
 };
 
 export const LocaleProvider = ({ children }) => {
-    const [stateLocale, dispatch] = useReducer(reducer, initialState)
+    const [localeState, localeDispatch] = useReducer(localeContextReducer, initialState)
 
     return (
-        <LocaleContext.Provider value={{ stateLocale, dispatch }}>
+        <LocaleContext.Provider value={{ localeState, localeDispatch }}>
             {children}
         </LocaleContext.Provider>
     );
