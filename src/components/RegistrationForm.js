@@ -73,6 +73,7 @@ export const RegistrationForm = ({ formInputs }) => {
 
                         case numberOfSteps:
                             return <FormStep
+                                checkboxLabel={locales.readAndAgree}
                                 checked={isValid}
                                 color="success"
                                 control={control}
