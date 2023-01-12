@@ -82,7 +82,7 @@ export const RegistrationForm = ({ formInputs }) => {
                                 labelBack={locales.back}
                                 labelSubmit={locales.submit}
                                 lastStep={lastStep}
-                                onClick={() => setFormStep(prevState => prevState - 1)}
+                                onClickBack={() => setFormStep(prevState => prevState - 1)}
                                 onClickSubmit={handleSubmit(onSubmit)}
                                 size="small"
                                 stepInputs={lastStep}
