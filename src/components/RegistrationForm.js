@@ -5,10 +5,8 @@ import styled from 'styled-components'
 import { useLocale } from "../context/LocaleContext";
 import hangingMonkey from "../assets/hanging-monkey.gif"
 import { BASE_URL, postFormInputs } from "../services/api.js";
-import { BEIGE, GREEN, TERMS_AND_COND } from "../constants.js";
-import { CheckboxInput } from "./CheckboxInput";
-import { FormInputBase } from "./FormInputBase.js";
-import { RegistrationFormButton } from "./RegistrationFormButton.js";
+import { BEIGE, GREEN, TERMS_AND_COND, YELLOW } from "../constants.js";
+import { FormStep } from "./FormStep";
 
 export const RegistrationForm = ({ formInputs }) => {
 
@@ -19,13 +17,23 @@ export const RegistrationForm = ({ formInputs }) => {
     const { control, handleSubmit, getValues, formState: { isValid } } = useForm()
 
     const navigate = useNavigate()
+
     const [formStep, setFormStep] = useState(1)
+    const numberOfSteps = Math.max(...formInputs.map(input => input.step))
 
-    // only two steps for now
-    const step1 = formInputs.filter(input => input.step === 1)
-    const step2 = formInputs.filter(input => input.step === 2)
+    const steps = Object.values(formInputs.reduce((acc, current) => {
+        acc[current.step] = acc[current.step] ?? []
+        acc[current.step].push(current)
+        return acc
+    }, {}))
 
-    const onBlur = () => setFormStep(2)
+    const copySteps = [...steps]
+    const firstStep = copySteps.shift()
+    const lastStep = copySteps.pop()
+
+    const generateStepLabel = (stepNum) => stepNum + ' / ' + numberOfSteps
+
+    const onBlur = () => setFormStep(prevState => prevState + 1)
 
     const onSubmit = async (data) => {
         if (isValid) {
@@ -39,7 +47,6 @@ export const RegistrationForm = ({ formInputs }) => {
                     navigate('/user-overview', { state: { data: error, status: 'error' } })
                 )
         }
-
     }
 
     if (isLoading) return <StyledDivLoading><img src={hangingMonkey} alt="spinning-monkey" /></StyledDivLoading>
@@ -47,56 +54,67 @@ export const RegistrationForm = ({ formInputs }) => {
     return (
         <form>
             <StyledDivInputs>
-                {formStep === 1
-                    ?
-                    <>{step1.map(input =>
-                        <FormInputBase
-                            isValid={isValid}
-                            control={control}
-                            defaultValue={input.defaultValue}
-                            fieldType={input.fieldType}
-                            getValues={getValues}
-                            id={input.code}
-                            key={input.code}
-                            name={input.code}
-                            options={input.valueList}
-                            placeholder={input.name}
-                            required={input.required}
-                            validators={input.validators}
-                        />)}
-                        <RegistrationFormButton label={locales.next} onClick={handleSubmit(onBlur)} style={GREEN} />
-                    </>
-                    :
-                    <>{step2.map(input =>
-                        <FormInputBase
-                            isValid={isValid}
-                            control={control}
-                            defaultValue={input.defaultValue}
-                            fieldType={input.fieldType}
-                            getValues={getValues}
-                            id={input.code}
-                            key={input.code}
-                            name={input.code}
-                            options={input.valueList}
-                            placeholder={input.name}
-                            required={input.required}
-                            validators={input.validators}
-                        />)}
-                        <CheckboxInput
-                            checked={isValid}
-                            color="success"
-                            disabled={!isValid}
-                            label={locales.readAndAgree}
-                            size="small"
-                            url={TERMS_AND_COND}
-                            urlText={locales.termsAndConditions}
-                        />
-                        <StyledDivButtons>
-                            <RegistrationFormButton label={locales.back} onClick={() => setFormStep(1)} style={BEIGE} />
-                            <RegistrationFormButton label={locales.submit} onClick={handleSubmit(onSubmit)} style={GREEN} />
-                        </StyledDivButtons>
-                    </>
-                }
+
+                {(() => {
+                    switch (formStep) {
+                        case 1:
+                            return <FormStep
+                                control={control}
+                                firstStep={firstStep}
+                                getValues={getValues}
+                                isValid={isValid}
+                                labelNext={locales.next}
+                                onClickNext={handleSubmit(onBlur)}
+                                stepInputs={firstStep}
+                                stepLabel={generateStepLabel(formStep)}
+                                stepPosition={firstStep}
+                                styleNext={GREEN}
+                            />
+
+                        case numberOfSteps:
+                            return <FormStep
+                                checked={isValid}
+                                color="success"
+                                control={control}
+                                disabled={!isValid}
+                                getValues={getValues}
+                                isValid={isValid}
+                                labelBack={locales.back}
+                                labelSubmit={locales.submit}
+                                lastStep={lastStep}
+                                onClick={() => setFormStep(prevState => prevState - 1)}
+                                onClickSubmit={handleSubmit(onSubmit)}
+                                size="small"
+                                stepInputs={lastStep}
+                                stepLabel={generateStepLabel(formStep)}
+                                stepPosition={lastStep}
+                                styleBack={BEIGE}
+                                styleSubmit={YELLOW}
+                                url={TERMS_AND_COND}
+                                urlText={locales.termsAndConditions}
+                            />
+
+                            {/* case (formStep > 1 && formStep < numberOfSteps): */ }
+                        default:
+                            return <FormStep
+                                control={control}
+                                getValues={getValues}
+                                isValid={isValid}
+                                labelBack={locales.back}
+                                labelNext={locales.next}
+                                onClickBack={() => setFormStep(prevState => prevState - 1)}
+                                onClickNext={handleSubmit(onBlur)}
+                                stepInputs={steps[formStep - 1]}
+                                stepLabel={generateStepLabel(formStep)}
+                                stepPosition
+                                style={GREEN}
+                                styleBack={BEIGE}
+                                styleNext={GREEN}
+                            />
+
+                    }
+                })()}
+
             </StyledDivInputs>
         </form>
     )
@@ -110,8 +128,4 @@ const StyledDivLoading = styled.div`
   `;
 const StyledDivInputs = styled.div`
     margin-bottom: 18px;
-`
-const StyledDivButtons = styled.div`
-    display: flex;
-    justify-content: space-between;
 `
