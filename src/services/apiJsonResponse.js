@@ -9,7 +9,7 @@ export const initialFormResponse = {
                 "order": 11,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -38,7 +38,7 @@ export const initialFormResponse = {
                 "order": 8,
                 "defaultValue": "",
                 "required": true,
-                "step": 3,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -162,7 +162,7 @@ export const initialFormResponse = {
                 "order": 2,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -229,7 +229,7 @@ export const initialFormResponse = {
                 "order": 6,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -260,7 +260,7 @@ export const initialFormResponse = {
                 "order": 7,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -283,7 +283,7 @@ export const initialFormResponse = {
                 "order": 9,
                 "defaultValue": "",
                 "required": true,
-                "step": 3,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -312,7 +312,7 @@ export const initialFormResponse = {
                 "order": 10,
                 "defaultValue": "hr",
                 "required": true,
-                "step": 3,
+                "step": 1,
                 "valueList": [
                     { "order": 1, "value": "me", "name": "Montenegro" },
                     { "order": 1, "value": "hr", "name": "Croatia" },
@@ -349,7 +349,7 @@ export const initialFormResponse = {
                 "order": 11,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -378,7 +378,7 @@ export const initialFormResponse = {
                 "order": 8,
                 "defaultValue": "",
                 "required": true,
-                "step": 3,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -502,7 +502,7 @@ export const initialFormResponse = {
                 "order": 3,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -569,7 +569,7 @@ export const initialFormResponse = {
                 "order": 6,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -600,7 +600,7 @@ export const initialFormResponse = {
                 "order": 7,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -623,7 +623,7 @@ export const initialFormResponse = {
                 "order": 9,
                 "defaultValue": "",
                 "required": true,
-                "step": 3,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -652,7 +652,7 @@ export const initialFormResponse = {
                 "order": 10,
                 "defaultValue": "hr",
                 "required": true,
-                "step": 3,
+                "step": 1,
                 "valueList": [
                     { "order": 1, "value": "me", "name": "Moo eek uee" },
                     { "order": 1, "value": "hr", "name": "Cro ee" },
@@ -689,7 +689,7 @@ export const initialFormResponse = {
                 "order": 11,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -718,7 +718,7 @@ export const initialFormResponse = {
                 "order": 8,
                 "defaultValue": "",
                 "required": true,
-                "step": 3,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -842,7 +842,7 @@ export const initialFormResponse = {
                 "order": 3,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -909,7 +909,7 @@ export const initialFormResponse = {
                 "order": 6,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -940,7 +940,7 @@ export const initialFormResponse = {
                 "order": 7,
                 "defaultValue": "",
                 "required": true,
-                "step": 2,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -963,7 +963,7 @@ export const initialFormResponse = {
                 "order": 9,
                 "defaultValue": "",
                 "required": true,
-                "step": 3,
+                "step": 1,
                 "valueList": [],
                 "validators": [
                     {
@@ -992,7 +992,7 @@ export const initialFormResponse = {
                 "order": 10,
                 "defaultValue": "hr",
                 "required": true,
-                "step": 3,
+                "step": 1,
                 "valueList": [
                     { "order": 1, "value": "me", "name": "Montenegro" },
                     { "order": 1, "value": "hr", "name": "Kroatia" },

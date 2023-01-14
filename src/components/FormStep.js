@@ -5,7 +5,7 @@ import { FormInputBase } from "./FormInputBase"
 import { RegistrationFormButton } from "./RegistrationFormButton"
 
 export const FormStep = ({ checkboxLabel, checked, color, control, disabled, firstStep, getValues, isValid, labelBack, labelNext,
-    labelSubmit, lastStep, onClickBack, onClickNext, onClickSubmit, size, stepInputs, stepLabel, stepPosition, styleBack, styleNext,
+    labelSubmit, lastStep, onClickBack, onClickNext, onClickSubmit, onlyStep, size, stepInputs, stepLabel, stepPosition, styleBack, styleNext,
     styleSubmit, url, urlText }) => {
 
     return (
@@ -40,6 +40,9 @@ export const FormStep = ({ checkboxLabel, checked, color, control, disabled, fir
                                     <RegistrationFormButton label={labelSubmit} onClick={onClickSubmit} style={styleSubmit} />
                                 </StyledDivButtons>
                             </>
+
+                        case onlyStep:
+                            return <RegistrationFormButton label={labelSubmit} onClick={onClickSubmit} style={styleSubmit} />
 
                             {/* case middleStep: */ }
                         default:
