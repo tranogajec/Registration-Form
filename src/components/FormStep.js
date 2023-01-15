@@ -33,24 +33,31 @@ export const FormStep = ({ checkboxLabel, checked, color, control, disabled, fir
                             return <RegistrationFormButton label={labelNext} onClick={onClickNext} style={styleNext} />
 
                         case lastStep:
-                            return <>
-                                <CheckboxInput checked={checked} color={color} disabled={disabled} label={checkboxLabel} size={size} url={url} urlText={urlText} />
-                                <StyledDivButtons>
-                                    <RegistrationFormButton label={labelBack} onClick={onClickBack} style={styleBack} />
-                                    <RegistrationFormButton label={labelSubmit} onClick={onClickSubmit} style={styleSubmit} />
-                                </StyledDivButtons>
-                            </>
+                            return (
+                                <>
+                                    <CheckboxInput checked={checked} color={color} disabled={disabled} label={checkboxLabel} size={size} url={url} urlText={urlText} />
+                                    <StyledDivButtons>
+                                        <RegistrationFormButton label={labelBack} onClick={onClickBack} style={styleBack} />
+                                        <RegistrationFormButton label={labelSubmit} onClick={onClickSubmit} style={styleSubmit} />
+                                    </StyledDivButtons>
+                                </>
+                            )
 
                         case onlyStep:
-                            return <RegistrationFormButton label={labelSubmit} onClick={onClickSubmit} style={styleSubmit} />
+                            return (
+                                <StyledDivOnlyStepButton>
+                                    <RegistrationFormButton label={labelSubmit} onClick={onClickSubmit} style={styleSubmit} />
+                                </StyledDivOnlyStepButton>
+                            )
 
                             {/* case middleStep: */ }
                         default:
-                            return <StyledDivButtons>
-                                <RegistrationFormButton label={labelBack} onClick={onClickBack} style={styleBack} />
-                                <RegistrationFormButton label={labelNext} onClick={onClickNext} style={styleNext} />
-                            </StyledDivButtons>
-
+                            return (
+                                <StyledDivButtons>
+                                    <RegistrationFormButton label={labelBack} onClick={onClickBack} style={styleBack} />
+                                    <RegistrationFormButton label={labelNext} onClick={onClickNext} style={styleNext} />
+                                </StyledDivButtons>
+                            )
                     }
 
                 })()}
@@ -68,4 +75,8 @@ const StyledH5Step = styled.h5`
 const StyledDivButtons = styled.div`
     display: flex;
     justify-content: space-between;
+`
+const StyledDivOnlyStepButton = styled.div`
+    display: flex;
+    flex-direction: row-reverse;
 `

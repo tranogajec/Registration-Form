@@ -19,7 +19,7 @@ export const RegistrationForm = ({ formInputs }) => {
     const navigate = useNavigate()
 
     const [formStep, setFormStep] = useState(1)
-    const stepsNumber = Math.max(...formInputs.map(input => input.step))
+    const numberOfSteps = Math.max(...formInputs.map(input => input.step))
 
     const steps = Object.values(formInputs.reduce((acc, current) => {
         acc[current.step] = acc[current.step] ?? []
@@ -31,7 +31,7 @@ export const RegistrationForm = ({ formInputs }) => {
     const firstStep = copySteps.shift()
     const lastStep = copySteps.pop()
 
-    const generateStepLabel = (stepNum) => stepNum + ' / ' + stepsNumber
+    const generateStepLabel = (stepNum) => stepNum + ' / ' + numberOfSteps
 
     const onBlur = () => setFormStep(prevState => prevState + 1)
 
@@ -55,7 +55,7 @@ export const RegistrationForm = ({ formInputs }) => {
         <form>
             <StyledDivInputs>
 
-                {stepsNumber === 1
+                {numberOfSteps === 1
                     ? <FormStep
                         control={control}
                         getValues={getValues}
@@ -67,7 +67,6 @@ export const RegistrationForm = ({ formInputs }) => {
                         stepLabel={generateStepLabel(formStep)}
                         stepPosition={steps}
                         styleSubmit={YELLOW}
-
                     />
                     : (() => {
                         switch (formStep) {
@@ -85,7 +84,7 @@ export const RegistrationForm = ({ formInputs }) => {
                                     styleNext={GREEN}
                                 />
 
-                            case stepsNumber:
+                            case numberOfSteps:
                                 return <FormStep
                                     checkboxLabel={locales.readAndAgree}
                                     checked={isValid}
