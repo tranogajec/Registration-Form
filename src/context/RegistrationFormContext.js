@@ -6,9 +6,11 @@ const initialState = {
 
 const RegistrationFormContext = createContext();
 
+export const ADD_FORM = "ADD_FORM"
+
 const registrationFormReducer = (state, action) => {
     switch (action.type) {
-        case 'ADD_FORM': {
+        case ADD_FORM: {
             return {
                 ...state,
                 forms: {

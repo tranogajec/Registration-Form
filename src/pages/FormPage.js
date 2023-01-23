@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import hangingMonkey from '../assets/hanging-monkey.gif';
 import { BASE_URL, getFormInputs } from '../services/api';
 import { useLocale } from '../context/LocaleContext';
-import { useRegistrationForm } from '../context/RegistrationFormContext';
+import { ADD_FORM, useRegistrationForm } from '../context/RegistrationFormContext';
 import { Error } from '../components/Error';
 import { RegistrationForm } from '../components/RegistrationForm';
 
@@ -19,19 +19,15 @@ export const FormPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [serverError, setError] = useState(null);
 
+    const addForm = (language, form) => ({ type: ADD_FORM, payload: { language: language, form: form } })
+
     useEffect(() => {
         setIsLoading(true)
         if (!registrationFormState.forms[currentLang]) {
             setError(null);
             getFormInputs(BASE_URL, currentLang)
                 .then(res => {
-                    registrationFormDispatch({
-                        type: 'ADD_FORM',
-                        payload: {
-                            language: currentLang,
-                            form: [...res],
-                        },
-                    });
+                    registrationFormDispatch(addForm(currentLang, [...res]));
                     setIsLoading(false);
                 })
                 .catch(error => {
@@ -39,9 +35,7 @@ export const FormPage = () => {
                     setIsLoading(false);
                 });
         }
-        else {
-            setIsLoading(false)
-        }
+        else setIsLoading(false)
     }, [setIsLoading, currentLang, registrationFormDispatch, registrationFormState.forms]);
 
     if (isLoading)

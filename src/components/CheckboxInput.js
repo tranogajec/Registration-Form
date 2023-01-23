@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export const CheckboxInput = ({ checked, color, label, onChange, size, url, urlText }) =>
     <StyledDivCheckbox>
-        <Checkbox size={size} color={color} onChange={onChange} checked={checked} />
+        <Checkbox checked={checked} color={color} onChange={onChange} size={size} />
         <StyledDivText>
             <StyledSpanText>{label}</StyledSpanText>
             <a href={url}>{urlText}</a>
@@ -14,7 +14,7 @@ export const CheckboxInput = ({ checked, color, label, onChange, size, url, urlT
 const StyledDivCheckbox = styled.div`
     align-items: center;
     display: flex;
-    font-size: 14px;
+    font-size: 12px;
     margin-bottom: 18px;
     margin-top: 6px;
 `

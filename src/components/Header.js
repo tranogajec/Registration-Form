@@ -1,43 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from 'styled-components'
 import monkeyIcon from "../assets/monkey-icon.png"
-import { useLocale } from "../context/LocaleContext";
+import { CHANGE_LOCALE, useLocale } from "../context/LocaleContext";
 import { screenSize } from "../styles";
 import { BEIGE, languages, YELLOW } from "../constants"
 import { RegistrationFormButton } from "./RegistrationFormButton";
-import { Link } from "react-router-dom";
 
 export const Header = () => {
     const { localeState, localeDispatch } = useLocale();
     const { locales, currentLang } = localeState;
 
-    const handleLanguageChange = (language) => {
-        const action = {
-            type: "CHANGE_LOCALE",
-            payload: {
-                language
-            }
-        };
+    const changeLocale = (language) => ({ type: CHANGE_LOCALE, payload: { language } })
 
-        localeDispatch(action);
-    };
+    const handleLanguageChange = (language) => localeDispatch(changeLocale(language));
 
     return (
         <StyledHeader>
-            <StyledDivTitle>
-                <StyledH3Title>{locales.registrationFormTitle}</StyledH3Title>
+            <StyledLink to='/'>
+                <h3>{locales.registrationFormTitle}</h3>
                 <StyledDivImg>
-                    <Link to='/'>
-                        <img src={monkeyIcon} alt="monkey-icon" />
-                    </Link>
+                    <img src={monkeyIcon} alt="monkey-icon" />
                 </StyledDivImg>
-            </StyledDivTitle>
+            </StyledLink>
             <StyledDivButtons>
                 {Object.keys(languages).map((lang, index) =>
                     <RegistrationFormButton
                         key={index}
-                        onClick={() => handleLanguageChange(lang)}
                         label={lang}
+                        onClick={() => handleLanguageChange(lang)}
                         style={(lang === currentLang) ? YELLOW : BEIGE}
                     />
                 )}
@@ -58,15 +49,15 @@ const StyledHeader = styled.header`
         padding-left: 30px;
     }
 `
-const StyledDivTitle = styled.div`
+const StyledLink = styled(Link)`
     align-items: center;
+    color: #000;
     display: flex;
     flex-wrap:wrap;
     justify-content: space-between;
     margin-right: 30px;
+    text-decoration: none;
 `
-const StyledH3Title = styled.h3``
-
 const StyledDivImg = styled.div`
     margin-left: 12px;
 `

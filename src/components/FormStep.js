@@ -4,21 +4,44 @@ import { CheckboxInput } from "./CheckboxInput";
 import { FormInputBase } from "./FormInputBase"
 import { RegistrationFormButton } from "./RegistrationFormButton"
 
-export const FormStep = ({ checkboxLabel, checked, color, control, disabled, firstStep, getValues, isValid, labelBack, labelNext,
-    labelSubmit, lastStep, onClickBack, onClickNext, onClickSubmit, onlyStep, size, stepInputs, stepLabel, stepPosition, styleBack, styleNext,
-    styleSubmit, url, urlText }) => {
+export const FormStep = ({
+    checkboxLabel,
+    checked,
+    color,
+    control,
+    disabled,
+    firstStep,
+    getValues,
+    isValid,
+    labelBack,
+    labelNext,
+    labelSubmit,
+    lastStep,
+    onClickBack,
+    onClickNext,
+    onClickSubmit,
+    onlyStep,
+    size,
+    stepInputs,
+    stepLabel,
+    stepPosition,
+    styleBack,
+    styleNext,
+    styleSubmit,
+    url,
+    urlText }) => {
 
     return (
         <>
             <StyledH5Step>{stepLabel}</StyledH5Step>
             <>{stepInputs.map(input =>
                 <FormInputBase
-                    isValid={isValid}
                     control={control}
                     defaultValue={input.defaultValue}
                     fieldType={input.fieldType}
                     getValues={getValues}
                     id={input.code}
+                    isValid={isValid}
                     key={input.code}
                     name={input.code}
                     options={input.valueList}

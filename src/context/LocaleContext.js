@@ -7,9 +7,11 @@ const initialState = {
 }
 const LocaleContext = createContext()
 
+export const CHANGE_LOCALE = "CHANGE_LOCALE"
+
 const localeContextReducer = (state, action) => {
     switch (action.type) {
-        case "CHANGE_LOCALE": {
+        case CHANGE_LOCALE: {
             return {
                 ...state,
                 currentLang: action.payload.language,

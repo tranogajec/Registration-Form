@@ -8,10 +8,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 const LOCALE = 'de'
 
 export const DateInput = ({ id, onChange, value }) =>
-    <LocalizationProvider id={id} dateAdapter={AdapterDayjs} adapterLocale={LOCALE}>
+    <LocalizationProvider adapterLocale={LOCALE} dateAdapter={AdapterDayjs} id={id}>
         <DatePicker
             onChange={onChange}
-            value={value ? value : null}
             renderInput={props => <TextField {...props} />}
+            value={value ? value : null}
         />
     </LocalizationProvider>
